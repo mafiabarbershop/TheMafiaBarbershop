@@ -529,6 +529,7 @@
     transition: all 0.3s ease;
     outline: none;
     -webkit-appearance: none;
+    appearance: none;
   }
   .form-input:focus { border-color: #e11d48; background: rgba(225,29,72,0.04); }
   .form-input::placeholder { color: rgba(245,245,220,0.3); }
@@ -763,13 +764,6 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-  }
-  .outlets-section::after {
-    content: '';
-    position: absolute;
-    bottom: 40px; left: 40px; right: 40px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(225,29,72,0.25), transparent);
   }
 
   @media (max-width: 640px) {

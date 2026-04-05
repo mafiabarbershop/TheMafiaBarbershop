@@ -28,19 +28,13 @@ window.addEventListener('scroll', () => {
 // DATA BARBER (untuk dropdown form booking)
 const barbers = [
   // OUTLET #1 - LIDAH KULON
-  { nama: "Rizal", outlet: "Lidah Kulon", spec: "Fade Expert" },
-  { nama: "Andi", outlet: "Lidah Kulon", spec: "Classic Cut" },
-  { nama: "Budi", outlet: "Lidah Kulon", spec: "Coloring" },
-  { nama: "Dika", outlet: "Lidah Kulon", spec: "Modern Cut" },
-  { nama: "Erik", outlet: "Lidah Kulon", spec: "Senior Barber" },
-  { nama: "Fajar", outlet: "Lidah Kulon", spec: "Taper Expert" },
+  { nama: "Shandy", outlet: "Lidah Kulon"},
+  { nama: "Fauzan", outlet: "Lidah Kulon"},
+  { nama: "Kevin", outlet: "Lidah Kulon"},
   // OUTLET #2 - MERR
-  { nama: "Gani", outlet: "MERR", spec: "Pompadour" },
-  { nama: "Hadi", outlet: "MERR", spec: "Hair Tattoo" },
-  { nama: "Irfan", outlet: "MERR", spec: "Shaving Pro" },
-  { nama: "Tukiyem", outlet: "MERR", spec: "Styling" },
-  { nama: "Kevin", outlet: "MERR", spec: "Buzz Cut" },
-  { nama: "Lutfi", outlet: "MERR", spec: "All Rounder" }
+  { nama: "Lucky", outlet: "MERR"},
+  { nama: "Robin", outlet: "MERR"},
+  { nama: "Dani", outlet: "MERR"}
 ];
 
 function updateBarberSelect() {
@@ -52,7 +46,7 @@ function updateBarberSelect() {
   barbers.filter(b => b.outlet === filterTarget).forEach(b => {
     const opt = document.createElement('option');
     opt.value = b.nama;
-    opt.textContent = `${b.nama} (${b.spec})`;
+    opt.textContent = `${b.nama}`;
     barberSelect.appendChild(opt);
   });
 }
@@ -119,16 +113,36 @@ function handleBooking(e) {
       barber: document.getElementById('b-barber').value,
       layanan: document.getElementById('b-layanan').value,
       tanggal: document.getElementById('b-tanggal').value,
-      jam: document.getElementById('b-jam').value
+      jam: document.getElementById('b-jam').value,
+      catatan: document.getElementById('b-catatan').value
   };
 
+  // Format tanggal jadi lebih readable: 2026-04-10 → 10 April 2026
+  const tgl = new Date(data.tanggal);
+  const hariList = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulanList = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tanggalFormatted = `${hariList[tgl.getDay()]}, ${tgl.getDate()} ${bulanList[tgl.getMonth()]} ${tgl.getFullYear()}`;
+
   let waAdmin = data.outlet === "MERR" ? "6285385858626" : "6282225328882";
-  const text = `Halo The Mafia 💈\nBooking Reservasi:\n👤 Nama: ${data.nama}\n📍 Outlet: ${data.outlet}\n💇 Barber: ${data.barber}\n✂️ Layanan: ${data.layanan}\n📅 Tanggal: ${data.tanggal}\n⏰ Jam: ${data.jam} WIB`;
+  const catatanLine = data.catatan ? `\n📝 Catatan    : ${data.catatan}` : '';
+
+  const text =
+`💈 *BOOKING RESERVASI*
+━━━━━━━━━━━━━━━━━━━━
+👤 Nama      : ${data.nama}
+📍 Outlet    : ${data.outlet}
+💇 Barber    : ${data.barber}
+✂️ Layanan   : ${data.layanan}
+📅 Tanggal   : ${tanggalFormatted}
+⏰ Jam       : ${data.jam} WIB${catatanLine}
+━━━━━━━━━━━━━━━━━━━━
+Mohon konfirmasi ketersediaan slot. Terima kasih! 🙏`;
 
   document.getElementById('booking-success').classList.remove('hidden');
   setTimeout(() => {
       window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(text)}`, '_blank');
       e.target.reset();
+      updateBarberSelect();
       document.getElementById('booking-success').classList.add('hidden');
   }, 1000);
 }
