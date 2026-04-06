@@ -223,14 +223,14 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
 
   // Gallery Lightbox
   const lbImages = [
-    {src:'images/merchandise.jpg',title:'Merchandises'},
-    {src:'images/waitingroom.jpg',title:'Waiting Room'},
-    {src:'images/washbak.jpg',title:'Washbak'},
-    {src:'images/cashier.jpg',title:'Cashier'},
-    {src:'images/outlet_lidah2.jpg',title:'Outlet Lidah Kulon'},
-    {src:'images/undercut.jpg',title:'Undercut'},
-    {src:'images/frontyard.jpg',title:'Front Yard'},
-    {src:'images/outlet_mer.jpg',title:'Outlet MERR'}
+    {src:'images/merchandise.webp',title:'Merchandises'},
+    {src:'images/waitingroom.webp',title:'Waiting Room'},
+    {src:'images/washbak.webp',title:'Washbak'},
+    {src:'images/cashier.webp',title:'Cashier'},
+    {src:'images/outlet_lidah2.webp',title:'Outlet Lidah Kulon'},
+    {src:'images/undercut.webp',title:'Undercut'},
+    {src:'images/frontyard.webp',title:'Front Yard'},
+    {src:'images/outlet_mer.webp',title:'Outlet MERR'}
   ];
   let lbIndex = 0;
   
