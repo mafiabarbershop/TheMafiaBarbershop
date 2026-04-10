@@ -677,6 +677,39 @@
     z-index: 0;
   }
 
+  /* Elfsight Google Reviews Dark Mode Override */
+  .es-widget-container {
+    background-color: transparent !important;
+  }
+  .es-header {
+    background-color: rgba(22, 22, 22, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(245, 245, 220, 0.05) !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+  .es-header-info-name, .es-header-rating-value, .es-header-rating-count {
+    color: #f5f5dc !important;
+  }
+  .es-review-card, .es-review-card-inner {
+    background-color: rgba(30, 30, 30, 0.6) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 245, 220, 0.05) !important;
+    color: #f5f5dc !important;
+  }
+  .es-review-card-name, .es-review-card-date {
+    color: #f5f5dc !important;
+    opacity: 0.9;
+  }
+  .es-review-card-text {
+    color: rgba(245, 245, 220, 0.7) !important;
+  }
+  /* Invert the "Review us on Google" button if needed, or style it */
+  .es-header-button {
+    background: linear-gradient(135deg, #e11d48, #9f1239) !important;
+    border: none !important;
+    color: #fff !important;
+  }
+
   /* Fixed Floating Buttons */
   .fab-wa {
     position: fixed;
