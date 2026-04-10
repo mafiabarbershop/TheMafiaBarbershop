@@ -123,7 +123,7 @@ function handleBooking(e) {
   const bulanList = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const tanggalFormatted = `${hariList[tgl.getDay()]}, ${tgl.getDate()} ${bulanList[tgl.getMonth()]} ${tgl.getFullYear()}`;
 
-  let waAdmin = data.outlet === "MERR" ? "6285385858626" : "6282225328882";
+  let waAdmin = "6281232331581"; // Nomor Pusat Baru
   const catatanLine = data.catatan ? `\n📝 Catatan    : ${data.catatan}` : '';
 
   const text =
