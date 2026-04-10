@@ -154,7 +154,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
@@ -256,3 +256,13 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
   let lbTouchStartX=0;
   document.getElementById('gallery-lightbox').addEventListener('touchstart',(e)=>{lbTouchStartX=e.touches[0].clientX;},{passive:true});
   document.getElementById('gallery-lightbox').addEventListener('touchend',(e)=>{const diff=lbTouchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)lbSlide(diff>0?1:-1);},{passive:true});
+
+  // Modern Parallax Effect
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    document.querySelectorAll('.parallax').forEach(el => {
+      const speed = el.getAttribute('data-speed') || 0.05;
+      const yPos = -(scrolled * speed);
+      el.style.transform = `translateY(${yPos}px)`;
+    });
+  });

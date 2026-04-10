@@ -32,8 +32,30 @@
   gtag('js', new Date()); gtag('config', 'G-ZX6D9VYCYJ');
 </script>
 <link rel="stylesheet" href="style.css">
+<!-- Lenis Smooth Scroll -->
+<style>
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .lenis.lenis-scrolling iframe { pointer-events: none; }
+  
+  /* Scroll Progress Bar */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, #e11d48, #c9a84c);
+    z-index: 100;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(225,29,72,0.5);
+  }
+</style>
 </head>
 <body>
+<div id="scroll-progress"></div>
 
 
 
@@ -209,7 +231,7 @@
           <div class="absolute top-4 left-4"><span class="bg-crimson text-white text-xs font-bold tracking-wider px-3 py-1 uppercase">#1 Lidah Kulon</span></div>
         </div>
         <div class="p-8 relative">
-          <div class="big-number">01</div>
+          <div class="big-number parallax" data-speed="0.1">01</div>
           <div class="section-label mb-2">Outlet Pertama</div>
           <h3 class="font-display text-2xl font-black text-cream mb-4">Lidah Kulon</h3>
           <div class="flex items-start gap-3 mb-3"><svg class="w-4 h-4 text-crimson mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg><span class="text-cream/60 text-sm">Jl. Sepat Lidah Kulon No.2, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur</span></div>
@@ -241,7 +263,7 @@
           <div class="absolute top-4 left-4"><span class="bg-crimson text-white text-xs font-bold tracking-wider px-3 py-1 uppercase">#2 MERR</span></div>
         </div>
         <div class="p-8 relative">
-          <div class="big-number">02</div>
+          <div class="big-number parallax" data-speed="0.1">02</div>
           <div class="section-label mb-2">Outlet Kedua</div>
           <h3 class="font-display text-2xl font-black text-cream mb-4">Ruko Citi 9, MERR</h3>
           <div class="flex items-start gap-3 mb-3"><svg class="w-4 h-4 text-crimson mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg><span class="text-cream/60 text-sm">Ruko Citi 9, Jl. Dr. Ir. H. Soekarno, Gunung Anyar, Surabaya</span></div>
@@ -651,7 +673,7 @@
 
 <!-- BOOKING -->
 <section id="booking" class="py-28 px-6 md:px-12 section-box-border">
-  <div class="booking-orb-1"></div><div class="booking-orb-2"></div><div class="booking-orb-3"></div>
+  <div class="booking-orb-1 parallax" data-speed="0.15"></div><div class="booking-orb-2 parallax" data-speed="0.08"></div><div class="booking-orb-3 parallax" data-speed="0.12"></div>
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-16 reveal">
       <div class="section-label mb-4">Reservasi Online</div>
@@ -806,6 +828,29 @@
   <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
 </button>
 
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Scroll Progress
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("scroll-progress").style.width = scrolled + "%";
+  });
+</script>
 <script src="script.js"></script>
 </body>
 </html>

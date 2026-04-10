@@ -574,8 +574,19 @@
   hr.fancy { border: none; height: 1px; background: linear-gradient(to right, transparent, rgba(245,245,220,0.12), transparent); }
 
   /* Scroll animations */
-  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* Scroll animations - Enhanced Premium Version */
+  .reveal { 
+    opacity: 0; 
+    transform: translateY(60px) scale(0.92) rotateX(10deg); 
+    filter: blur(15px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+    will-change: transform, opacity, filter;
+  }
+  .reveal.visible { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0deg); 
+    filter: blur(0px);
+  }
 
   /* Badge */
   .live-badge {
