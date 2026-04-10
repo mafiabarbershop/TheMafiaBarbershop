@@ -9,8 +9,60 @@
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 1;
+    z-index: 9998;
     opacity: 0.4;
+  }
+
+  /* Custom Cursor */
+  #cursor {
+    width: 8px; height: 8px;
+    background: #e11d48;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001;
+    transition: transform 0.1s ease;
+  }
+  #cursor-follower {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(225,29,72,0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border 0.3s ease;
+  }
+  .cursor-hover #cursor-follower {
+    transform: scale(1.8);
+    background: rgba(225,29,72,0.1);
+    border-color: rgba(225,29,72,0.8);
+  }
+
+  /* Animated Background Auras */
+  .bg-aura {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .aura {
+    position: absolute;
+    width: 60vw; height: 60vw;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    animation: auraFloat 20s infinite alternate;
+  }
+  .aura-1 { background: #e11d48; top: -10%; left: -10%; }
+  .aura-2 { background: #c9a84c; bottom: -10%; right: -10%; animation-delay: -5s; }
+  @keyframes auraFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(10%, 5%) scale(1.1); }
+  }
+
+  @media (max-width: 768px) {
+    #cursor, #cursor-follower { display: none; }
   }
 
     /* Update pada bagian style */
@@ -139,11 +191,13 @@
   /* Section header */
   .section-label {
     font-family: 'Barlow', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.5em; /* Increased letter spacing */
     text-transform: uppercase;
     color: #e11d48;
+    margin-bottom: 1rem;
+    display: inline-block;
   }
   .section-title {
     font-family: 'Playfair Display', serif;
@@ -152,9 +206,10 @@
 
   /* Cards */
   .service-card {
-    background: linear-gradient(145deg, #161616, #111111);
-    border: 1px solid rgba(245,245,220,0.06);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(22, 22, 22, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 245, 220, 0.08);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
@@ -609,15 +664,17 @@
   /* Barbershop number accent */
   .big-number {
     font-family: 'Playfair Display', serif;
-    font-size: 7rem;
+    font-size: 10rem; /* Larger */
     font-weight: 900;
-    color: rgba(225,29,72,0.07);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(225,29,72,0.15); /* Outline effect */
     position: absolute;
-    top: -1rem;
-    right: 1rem;
+    top: -3rem;
+    right: -1rem;
     line-height: 1;
     pointer-events: none;
     user-select: none;
+    z-index: 0;
   }
 
   /* Fixed Floating Buttons */
