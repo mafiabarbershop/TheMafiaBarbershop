@@ -61,6 +61,7 @@ async function handleAIChatSubmit(e) {
     const loadingId = appendLoading();
 
     try {
+
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
             method: 'POST',
             headers: {
@@ -70,17 +71,24 @@ async function handleAIChatSubmit(e) {
                 contents: [
                     ...chatHistory,
                     {
+                        role: "user",
                         parts: [{ text: userMessage }]
                     }
                 ],
                 systemInstruction: {
-                    parts: [{ text: systemInstruction }]
+                    role: "system",
+                    parts: [{ text: systemInstruction.trim() }]
                 }
             })
         });
 
         const data = await response.json();
         removeLoading(loadingId);
+
+        if (data.error) {
+            console.error('Gemini API Error:', data.error);
+            throw new Error(data.error.message || 'API Error');
+        }
 
         if (data.candidates && data.candidates[0].content) {
             const aiResponse = data.candidates[0].content.parts[0].text;
@@ -93,12 +101,14 @@ async function handleAIChatSubmit(e) {
             // Keep history lean
             if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
         } else {
+            console.error('Unexpected Response:', data);
             throw new Error('Invalid response from AI');
         }
     } catch (error) {
-        console.error('AI Chat Error:', error);
+        console.error('Don Barber AI Error:', error);
         removeLoading(loadingId);
-        appendMessage('ai', "Maaf Boss, ada kendala teknis. Coba lagi sebentar lagi ya.");
+        // Show slightly more helpful error to console, but keep UI friendly
+        appendMessage('ai', "Maaf Boss, ada kendala teknis saat menghubungi markas. Coba lagi sebentar lagi ya.");
     }
 }
 
