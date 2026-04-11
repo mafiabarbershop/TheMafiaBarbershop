@@ -1,11 +1,32 @@
-
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const fs = require('fs');
+const path = require('path');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 
 const getIndonesianDate = () => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Jakarta' };
     return new Intl.DateTimeFormat('id-ID', options).format(new Date());
+};
+
+const saveImageToAssets = (base64Data, mimeType) => {
+    try {
+        const assetsDir = path.join(process.cwd(), 'assets');
+        if (!fs.existsSync(assetsDir)) {
+            fs.mkdirSync(assetsDir, { recursive: true });
+        }
+        const extension = mimeType.split('/')[1] || 'png';
+        const fileName = `upload_${Date.now()}.${extension}`;
+        const filePath = path.join(assetsDir, fileName);
+        const buffer = Buffer.from(base64Data, 'base64');
+        fs.writeFileSync(filePath, buffer);
+        console.log(`Image saved: ${filePath}`);
+        return fileName;
+    } catch (error) {
+        console.error('Error saving image:', error);
+        return null;
+    }
 };
 
 module.exports = async (req, res) => {
@@ -28,7 +49,6 @@ Expertise: Locations (Lidah Kulon & MERR), Services (Haircut Reguler 60k, Premiu
 Keep responses concise but premium. Primary language: Indonesian.
 `;
 
-
     // Tambahkan CORS secara manual untuk serverless function
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -50,9 +70,23 @@ Keep responses concise but premium. Primary language: Indonesian.
     try {
         const { contents } = req.body;
 
+        // Otorisasi simpan gambar ke folder assets
+        if (contents) {
+            contents.forEach(msg => {
+                if (msg.parts) {
+                    msg.parts.forEach(part => {
+                        if (part.inlineData) {
+                            saveImageToAssets(part.inlineData.data, part.inlineData.mimeType);
+                        }
+                    });
+                }
+            });
+        }
+
         if (!process.env.GEMINI_API_KEY) {
             return res.status(500).json({ error: 'API Key belum dikonfigurasi di Vercel.' });
         }
+
 
         const model = genAI.getGenerativeModel({
             model: "gemini-2.5-flash",
