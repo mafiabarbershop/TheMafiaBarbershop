@@ -817,21 +817,26 @@
 
   /* Ensure the cursor doesn't interfere with chat */
   #ai-chat-widget { pointer-events: auto; }
+  #ai-chat-btn { z-index: 1001; }
+  #ai-chat-window { z-index: 1002; bottom: 6.5rem !important; }
+
   .fab-top.show {
     opacity: 1;
     pointer-events: all;
     transform: translateY(0) scale(1);
     box-shadow: 0 6px 24px rgba(225,29,72,0.45);
   }
-  .fab-top:hover {
-    transform: translateY(-4px) scale(1.08);
-    box-shadow: 0 10px 32px rgba(225,29,72,0.6);
+  
+  .fab-wa.scroll-up {
+    bottom: 6rem; /* Adjusted from 5.5rem */
   }
-  .fab-top svg {
-    transition: transform 0.25s ease;
+
+  /* When scrolled, move AI button higher to avoid WA */
+  body.scrolled #ai-chat-btn {
+    bottom: 10.5rem !important;
   }
-  .fab-top:hover svg {
-    transform: translateY(-2px);
+  body.scrolled #ai-chat-window {
+    bottom: 10.5rem !important;
   }
 
 

@@ -99,7 +99,9 @@ toggleBtn.addEventListener('click', () => {
 
 // 5. NAVBAR SCROLL & MENU
 window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  const isScrolled = window.scrollY > 60;
+  document.getElementById('navbar').classList.toggle('scrolled', isScrolled);
+  document.body.classList.toggle('scrolled', isScrolled);
 });
 
 
