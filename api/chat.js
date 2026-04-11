@@ -3,14 +3,21 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const systemInstruction = `
+const getIndonesianDate = () => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Jakarta' };
+    return new Intl.DateTimeFormat('id-ID', options).format(new Date());
+};
+
+module.exports = async (req, res) => {
+    const currentIndonesianDate = getIndonesianDate();
+    const dynamicSystemInstruction = `
 You are 'Don Barber AI', the exclusive virtual concierge for 'The Mafia Barbershop' in Surabaya. 
 Your personality: Professional, slightly 'Mafia' themed, helpful and efficient.
+Your current time context: Hari ini adalah ${currentIndonesianDate}.
 Expertise: Locations (Lidah Kulon & MERR), Services (Haircut Reguler 60k, Premium 75k, Exclusive 125k), Booking (WA: 0812-3233-1581), Rewards.
 Keep responses concise. Primary language: Indonesian.
 `;
 
-module.exports = async (req, res) => {
     // Tambahkan CORS secara manual untuk serverless function
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,8 +45,9 @@ module.exports = async (req, res) => {
 
         const model = genAI.getGenerativeModel({
             model: "gemini-2.5-flash",
-            systemInstruction: systemInstruction
+            systemInstruction: dynamicSystemInstruction
         });
+
 
         const result = await model.generateContent({ contents });
         const response = await result.response;
