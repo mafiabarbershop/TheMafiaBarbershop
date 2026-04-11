@@ -1,0 +1,26 @@
+{
+  "name": "themafiabarbershop",
+  "version": "1.0.0",
+  "description": "Website resmi untuk The Mafia Barbershop - barbershop premium di Surabaya dengan konsep maskulin & elegan.",
+  "main": "ai-chat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mafiabarbershop/TheMafiaBarbershop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mafiabarbershop/TheMafiaBarbershop/issues"
+  },
+  "homepage": "https://github.com/mafiabarbershop/TheMafiaBarbershop#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1"
+  }
+}

@@ -1,34 +1,10 @@
 
 /**
  * Don Barber AI - Customer Service Logic
- * Using Google Gemini 1.5 Flash
+ * Using Backend Proxy for Security
  */
 
-
-const GEMINI_API_KEY = typeof ENV !== 'undefined' ? ENV.GEMINI_API_KEY : "";
-const GEMINI_MODEL = "gemini-1.5-flash";
-
 let chatHistory = [];
-
-// System instruction to define the AI's persona
-const systemInstruction = `
-You are 'Don Barber AI', the exclusive virtual concierge for 'The Mafia Barbershop' in Surabaya. 
-Your personality: Professional, slightly 'Mafia' themed (cool, respectful, using 'Boss' or 'Sir' occasionally), but very helpful and efficient.
-You are an expert on everything about the shop:
-- Locations: 
-  1. Lidah Kulon: Jl. Sepat Lidah Kulon No.2 (11.00 - 00.00 Mon-Thu, 09.00 - 00.00 Fri-Sun).
-  2. MERR: Ruko Citi 9, Gunung Anyar (Same hours).
-- Services: 
-  - Haircut Reguler (60k)
-  - Haircut Premium (75k) - including massage, hot towel, tonic.
-  - Haircut Exclusive (125k) - including eye mask, face cream, pomade styling.
-  - Women's services available too (75k-100k).
-  - Add-ons: Massage, Ear Candle, Creambath, Coloring, Perming.
-- Booking: Users can book via the website form or WhatsApp (0812-3233-1581).
-- Rewards: We have a loyalty system (Maverick, Capo, Underboss, Don) and a 4-monthly grand prize lucky draw.
-
-Keep responses concise (max 3-4 sentences unless requested). Use Indonesian as the primary language unless the user speaks English.
-`;
 
 function toggleAIChat() {
     const chatWindow = document.getElementById('ai-chat-window');
@@ -54,16 +30,14 @@ async function handleAIChatSubmit(e) {
     const userMessage = inputField.value.trim();
     if (!userMessage) return;
 
-    // Add user message to UI
     appendMessage('user', userMessage);
     inputField.value = '';
 
-    // Add loading indicator
     const loadingId = appendLoading();
 
     try {
-
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
+        // Panggil backend proxy kita sendiri, bukan Google langsung
+        const response = await fetch('/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,41 +49,28 @@ async function handleAIChatSubmit(e) {
                         role: "user",
                         parts: [{ text: userMessage }]
                     }
-                ],
-                system_instruction: {
-                    role: "system",
-                    parts: [{ text: systemInstruction.trim() }]
-                }
+                ]
             })
         });
 
         const data = await response.json();
         removeLoading(loadingId);
 
-        if (data.error) {
-            console.error('Gemini API Error:', data.error);
-            throw new Error(data.error.message || 'API Error');
-        }
-
-        if (data.candidates && data.candidates[0].content) {
-            const aiResponse = data.candidates[0].content.parts[0].text;
+        if (data.text) {
+            const aiResponse = data.text;
             appendMessage('ai', aiResponse);
             
-            // Update history
             chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
             chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
             
-            // Keep history lean
             if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
         } else {
-            console.error('Unexpected Response:', data);
-            throw new Error('Invalid response from AI');
+            throw new Error(data.error || 'Terjadi kesalahan pada AI.');
         }
     } catch (error) {
         console.error('Don Barber AI Error:', error);
         removeLoading(loadingId);
-        // Show slightly more helpful error to console, but keep UI friendly
-        appendMessage('ai', "Maaf Boss, ada kendala teknis saat menghubungi markas. Coba lagi sebentar lagi ya.");
+        appendMessage('ai', "Maaf Boss, markas sedang sulit dihubungi. Coba lagi sebentar lagi ya.");
     }
 }
 
@@ -119,7 +80,7 @@ function appendMessage(role, text) {
     messageDiv.className = role === 'user' ? 'flex justify-end' : 'flex gap-2';
     
     const innerHtml = role === 'user' 
-        ? `<div class="bg-crimson border border-crimson/20 rounded-lg rounded-tr-none p-3 text-white text-xs leading-relaxed max-w-[85%] shadow-lg">${text}</div>`
+        ? `<div class="bg-crimson border border-crimson/20 rounded-lg rounded-tl-none p-3 text-white text-xs leading-relaxed max-w-[85%] shadow-lg">${text}</div>`
         : `
             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px]">🤵</div>
             <div class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">${text}</div>
@@ -154,7 +115,6 @@ function removeLoading(id) {
     if (el) el.remove();
 }
 
-// Initialize listeners
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('ai-chat-form');
     if (form) {
