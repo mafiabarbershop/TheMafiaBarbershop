@@ -10,8 +10,11 @@ let pendingImage = null;
 function toggleAIChat() {
     const chatWindow = document.getElementById('ai-chat-window');
     const inputField = document.getElementById('ai-chat-input');
+    const hint = document.getElementById('ai-chat-hint');
+    
     if (chatWindow.classList.contains('hidden')) {
         chatWindow.classList.remove('hidden');
+        if (hint) hint.classList.add('hidden'); // Sembunyikan notifikasi saat chat dibuka
         setTimeout(() => {
             chatWindow.classList.remove('scale-95', 'opacity-0');
             chatWindow.classList.add('scale-100', 'opacity-100');
@@ -25,6 +28,7 @@ function toggleAIChat() {
         }, 300);
     }
 }
+
 
 function handleFileSelect(e) {
     const file = e.target.files[0];
@@ -191,4 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fileInput.addEventListener('change', handleFileSelect);
     }
 });
+
+
 

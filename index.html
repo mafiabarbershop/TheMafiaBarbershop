@@ -888,22 +888,19 @@
       <div class="flex gap-2">
         <div class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px]">🤵</div>
         <div class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">
-          Selamat datang di The Mafia Barbershop. Saya Don Barber AI. Ada yang bisa saya bantu hari ini, Boss?
+          Selamat datang, Boss! Saya Don Barber AI. <br><br><b>Update:</b> Sekarang Boss bisa <b>kirim foto wajah</b> (klik ikon kamera) untuk mendapatkan saran gaya rambut yang paling pas! Ada yang bisa saya bantu?
         </div>
+
       </div>
     </div>
     <!-- Input -->
     <div class="p-4 bg-white/5 border-t border-white/10">
       <form id="ai-chat-form" class="flex gap-2 items-center">
         <label for="ai-chat-file" class="relative cursor-pointer text-cream/40 hover:text-crimson transition-colors p-1" title="Upload Foto (Analisis Rambut)">
-          <!-- Hint Notification -->
-          <div id="ai-chat-hint" class="absolute bottom-full left-0 mb-3 w-48 bg-crimson text-white text-[10px] py-2 px-3 rounded-lg shadow-xl animate-bounce hidden md:block group-hover:block">
-            <span class="font-bold">Baru!</span> Kirim foto Boss untuk saran gaya rambut terbaik.
-            <div class="absolute top-full left-2 -mt-1 border-8 border-transparent border-t-crimson"></div>
-          </div>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <input type="file" id="ai-chat-file" class="hidden" accept="image/*">
         </label>
+
 
         <div class="relative flex-1">
           <div id="ai-chat-preview" class="absolute bottom-full left-0 mb-2 hidden">
