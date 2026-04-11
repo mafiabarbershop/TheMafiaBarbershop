@@ -5,14 +5,17 @@
  */
 
 let chatHistory = [];
+let pendingImage = null;
 
 function toggleAIChat() {
     const chatWindow = document.getElementById('ai-chat-window');
+    const inputField = document.getElementById('ai-chat-input');
     if (chatWindow.classList.contains('hidden')) {
         chatWindow.classList.remove('hidden');
         setTimeout(() => {
             chatWindow.classList.remove('scale-95', 'opacity-0');
             chatWindow.classList.add('scale-100', 'opacity-100');
+            inputField.focus();
         }, 10);
     } else {
         chatWindow.classList.add('scale-95', 'opacity-0');
@@ -23,20 +26,64 @@ function toggleAIChat() {
     }
 }
 
+function handleFileSelect(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        pendingImage = {
+            inlineData: {
+                data: event.target.result.split(',')[1],
+                mimeType: file.type
+            }
+        };
+        showImagePreview(event.target.result);
+    };
+    reader.readAsDataURL(file);
+}
+
+function showImagePreview(src) {
+    const preview = document.getElementById('ai-chat-preview');
+    const img = document.getElementById('ai-chat-preview-img');
+    img.src = src;
+    preview.classList.remove('hidden');
+}
+
+function cancelImageUpload() {
+    pendingImage = null;
+    document.getElementById('ai-chat-preview').classList.add('hidden');
+    document.getElementById('ai-chat-file').value = '';
+}
+
 async function handleAIChatSubmit(e) {
     if (e) e.preventDefault();
     
     const inputField = document.getElementById('ai-chat-input');
     const userMessage = inputField.value.trim();
-    if (!userMessage) return;
+    if (!userMessage && !pendingImage) return;
 
-    appendMessage('user', userMessage);
+    const currentImage = pendingImage;
+    cancelImageUpload();
+
+    // Tampilkan pesan di UI
+    if (currentImage) {
+        appendImageMessage('user', currentImage.inlineData.data, currentImage.inlineData.mimeType);
+    }
+    if (userMessage) {
+        appendMessage('user', userMessage);
+    }
+    
     inputField.value = '';
-
     const loadingId = appendLoading();
 
     try {
-        // Panggil backend proxy kita sendiri, bukan Google langsung
+        const parts = [];
+        if (currentImage) {
+            parts.push(currentImage);
+        }
+        parts.push({ text: userMessage || "Berikan saran potongan rambut yang pas untuk saya berdasarkan foto ini." });
+
         const response = await fetch('/api/chat', {
             method: 'POST',
             headers: {
@@ -47,7 +94,7 @@ async function handleAIChatSubmit(e) {
                     ...chatHistory,
                     {
                         role: "user",
-                        parts: [{ text: userMessage }]
+                        parts: parts
                     }
                 ]
             })
@@ -60,7 +107,7 @@ async function handleAIChatSubmit(e) {
             const aiResponse = data.text;
             appendMessage('ai', aiResponse);
             
-            chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+            chatHistory.push({ role: "user", parts: parts });
             chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
             
             if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
@@ -74,16 +121,34 @@ async function handleAIChatSubmit(e) {
     }
 }
 
+function appendImageMessage(role, base64, mimeType) {
+    const messagesContainer = document.getElementById('ai-chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = role === 'user' ? 'flex justify-end' : 'flex gap-2';
+    
+    messageDiv.innerHTML = `
+        <div class="bg-crimson/10 border border-crimson/20 rounded-lg p-2 max-w-[70%] shadow-lg">
+            <img src="data:${mimeType};base64,${base64}" class="w-full h-auto rounded-sm border border-white/10" alt="Uploaded Image">
+        </div>
+    `;
+    
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
 function appendMessage(role, text) {
     const messagesContainer = document.getElementById('ai-chat-messages');
     const messageDiv = document.createElement('div');
     messageDiv.className = role === 'user' ? 'flex justify-end' : 'flex gap-2';
     
+    // Parse markdown-like bold text **text** to <b>text</b>
+    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+
     const innerHtml = role === 'user' 
-        ? `<div class="bg-crimson border border-crimson/20 rounded-lg rounded-tl-none p-3 text-white text-xs leading-relaxed max-w-[85%] shadow-lg">${text}</div>`
+        ? `<div class="bg-crimson border border-crimson/20 rounded-lg rounded-tl-none p-3 text-white text-xs leading-relaxed max-w-[85%] shadow-lg">${formattedText}</div>`
         : `
             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px]">🤵</div>
-            <div class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">${text}</div>
+            <div class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">${formattedText}</div>
         `;
     
     messageDiv.innerHTML = innerHtml;
@@ -120,4 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', handleAIChatSubmit);
     }
+    
+    const fileInput = document.getElementById('ai-chat-file');
+    if (fileInput) {
+        fileInput.addEventListener('change', handleFileSelect);
+    }
 });
+

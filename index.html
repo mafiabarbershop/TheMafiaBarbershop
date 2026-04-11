@@ -894,12 +894,25 @@
     </div>
     <!-- Input -->
     <div class="p-4 bg-white/5 border-t border-white/10">
-      <form id="ai-chat-form" class="flex gap-2">
-        <input type="text" id="ai-chat-input" placeholder="Tanya sesuatu..." class="flex-1 bg-noir/50 border border-white/10 rounded-md px-3 py-2 text-xs text-cream outline-none focus:border-crimson transition-colors">
+      <form id="ai-chat-form" class="flex gap-2 items-center">
+        <label for="ai-chat-file" class="cursor-pointer text-cream/40 hover:text-crimson transition-colors p-1" title="Upload Foto (Analisis Rambut)">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <input type="file" id="ai-chat-file" class="hidden" accept="image/*">
+        </label>
+        <div class="relative flex-1">
+          <div id="ai-chat-preview" class="absolute bottom-full left-0 mb-2 hidden">
+            <div class="relative w-12 h-12 rounded border border-white/20 overflow-hidden">
+               <img id="ai-chat-preview-img" src="" class="w-full h-full object-cover">
+               <button type="button" onclick="cancelImageUpload()" class="absolute top-0 right-0 bg-black/50 text-white text-[8px] p-0.5">✕</button>
+            </div>
+          </div>
+          <input type="text" id="ai-chat-input" placeholder="Tanya sesuatu atau upload foto..." class="w-full bg-noir/50 border border-white/10 rounded-md px-3 py-2 text-xs text-cream outline-none focus:border-crimson transition-colors">
+        </div>
         <button type="submit" class="bg-crimson hover:bg-blood px-3 py-2 rounded-md text-white transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
+
     </div>
   </div>
   <!-- Flying Button -->
