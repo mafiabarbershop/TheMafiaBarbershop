@@ -31,19 +31,19 @@ module.exports = async (req, res) => {
 
     try {
         const { contents } = req.body;
-        
+
         if (!process.env.GEMINI_API_KEY) {
             return res.status(500).json({ error: 'API Key belum dikonfigurasi di Vercel.' });
         }
 
-        const model = genAI.getGenerativeModel({ 
-            model: "gemini-1.5-flash",
-            systemInstruction: systemInstruction 
+        const model = genAI.getGenerativeModel({
+            model: "gemini-2.5-flash",
+            systemInstruction: systemInstruction
         });
 
         const result = await model.generateContent({ contents });
         const response = await result.response;
-        
+
         return res.status(200).json({ text: response.text() });
     } catch (error) {
         console.error('Vercel API Error:', error);
