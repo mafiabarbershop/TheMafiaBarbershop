@@ -62,7 +62,7 @@ async function handleAIChatSubmit(e) {
 
     try {
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ async function handleAIChatSubmit(e) {
                         parts: [{ text: userMessage }]
                     }
                 ],
-                systemInstruction: {
+                system_instruction: {
                     role: "system",
                     parts: [{ text: systemInstruction.trim() }]
                 }
