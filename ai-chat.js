@@ -4,7 +4,8 @@
  * Using Google Gemini 1.5 Flash
  */
 
-const GEMINI_API_KEY = "AIzaSyD2EyUM4r5VQzKzqJ2Ivv3tHabh0N9N8zA";
+
+const GEMINI_API_KEY = typeof ENV !== 'undefined' ? ENV.GEMINI_API_KEY : "";
 const GEMINI_MODEL = "gemini-1.5-flash";
 
 let chatHistory = [];
