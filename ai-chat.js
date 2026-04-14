@@ -107,12 +107,22 @@ async function handleAIChatSubmit(e) {
         const data = await response.json();
         removeLoading(loadingId);
 
-        if (data.text) {
-            const aiResponse = data.text;
-            appendMessage('ai', aiResponse);
+        if (data.parts) {
+            data.parts.forEach(part => {
+                if (part.text) {
+                    appendMessage('ai', part.text);
+                } else if (part.image) {
+                    appendImageMessage('ai', part.image, part.mimeType);
+                }
+            });
             
             chatHistory.push({ role: "user", parts: parts });
-            chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
+            
+            // Map the response parts back to the API format for history
+            const modelParts = data.parts.map(p => 
+                p.text ? { text: p.text } : { inlineData: { data: p.image, mimeType: p.mimeType } }
+            );
+            chatHistory.push({ role: "model", parts: modelParts });
             
             if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
         } else {
@@ -130,12 +140,16 @@ function appendImageMessage(role, base64, mimeType) {
     const messageDiv = document.createElement('div');
     messageDiv.className = role === 'user' ? 'flex justify-end' : 'flex gap-2';
     
-    messageDiv.innerHTML = `
-        <div class="bg-crimson/10 border border-crimson/20 rounded-lg p-2 max-w-[70%] shadow-lg">
-            <img src="data:${mimeType};base64,${base64}" class="w-full h-auto rounded-sm border border-white/10" alt="Uploaded Image">
-        </div>
-    `;
+    const innerHtml = role === 'user' 
+        ? `<div class="bg-crimson/10 border border-crimson/20 rounded-lg p-2 max-w-[70%] shadow-lg">
+               <img src="data:${mimeType};base64,${base64}" class="w-full h-auto rounded-sm border border-white/10" alt="Uploaded Image">
+           </div>`
+        : `<div class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px] mt-1">🤵</div>
+           <div class="bg-white/5 border border-white/10 rounded-lg p-2 max-w-[75%] shadow-lg">
+               <img src="data:${mimeType};base64,${base64}" class="w-full h-auto rounded-sm border border-white/10" alt="Generated Simulation">
+           </div>`;
     
+    messageDiv.innerHTML = innerHtml;
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
@@ -146,7 +160,10 @@ function appendMessage(role, text) {
     messageDiv.className = role === 'user' ? 'flex justify-end' : 'flex gap-2';
     
     // Parse markdown-like bold text **text** to <b>text</b>
-    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    
+    // Parse markdown images ![alt](url)
+    formattedText = formattedText.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="mt-2 rounded-lg overflow-hidden border border-white/10 shadow-lg bg-black"><img src="$2" alt="$1" class="w-full h-auto"></div>');
 
     const innerHtml = role === 'user' 
         ? `<div class="bg-crimson border border-crimson/20 rounded-lg rounded-tl-none p-3 text-white text-xs leading-relaxed max-w-[85%] shadow-lg">${formattedText}</div>`

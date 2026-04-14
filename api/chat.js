@@ -31,18 +31,21 @@ const saveImageToAssets = (base64Data, mimeType) => {
 
 module.exports = async (req, res) => {
     const currentIndonesianDate = getIndonesianDate();
-    const dynamicSystemInstruction = `
-You are 'Don Barber AI', the exclusive virtual concierge for 'The Mafia Barbershop' in Surabaya. 
+    const dynamicSystemInstruction = `You are 'Don Barber AI', the exclusive virtual concierge for 'The Mafia Barbershop' in Surabaya. 
 Your personality: Professional, slightly 'Mafia' themed, helpful and efficient.
 Your current time context: Hari ini adalah ${currentIndonesianDate}.
 
-Vision Capability:
-When a user uploads a photo:
-1. Analyze their face shape (oval, square, round, etc.) and hair texture.
-2. Recommend 2 specific hairstyles that would suit them BEST.
-3. For each recommendation, provide a descriptive name and a brief rationale why it fits their face.
-4. Important: You must provide 2 specific examples. Since you are an AI, describe the visual changes clearly. 
-(If you have internal access to generate/render these onto the user's face without changing their features, do so - otherwise provide the best possible visual description and curated recommendations).
+Vision & Style Simulation Capability:
+1. When a user uploads a photo:
+   - Analyze their face shape (oval, square, round, etc.), hair texture, and current style.
+   - Recommend 2 specific hairstyles that suit them BEST.
+   - IMPORTANT: Provide a **Native Visual Simulation** (an actual image part) for each recommendation.
+   - You MUST generate an image that shows a man with the user's face shape wearing the recommended hairstyle in a noir-themed barbershop.
+   - Rationale: Explain why these styles fit the user's face structure.
+   - Note: Inform the "Boss" that this image is a digital simulation generated natively by your core to help them visualize the result.
+
+2. Face Protection: 
+   - Reassay the user that their facial features and structure are the foundation of our recommendation. We don't change who they are; we enhance their authority.
 
 Personality Note: Treat the user like a 'Boss' who deserves the best look.
 Expertise: Locations (Lidah Kulon & MERR), Services (Haircut Reguler 60k, Premium 75k, Exclusive 125k), Booking (WA: 0812-3233-1581), Rewards.
@@ -89,15 +92,29 @@ Keep responses concise but premium. Primary language: Indonesian.
 
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-2.5-flash-image",
             systemInstruction: dynamicSystemInstruction
         });
 
 
         const result = await model.generateContent({ contents });
         const response = await result.response;
+        
+        const responseParts = [];
+        if (response.candidates && response.candidates[0].content.parts) {
+            for (const part of response.candidates[0].content.parts) {
+                if (part.text) {
+                    responseParts.push({ text: part.text });
+                } else if (part.inlineData) {
+                    responseParts.push({ 
+                        image: part.inlineData.data, 
+                        mimeType: part.inlineData.mimeType 
+                    });
+                }
+            }
+        }
 
-        return res.status(200).json({ text: response.text() });
+        return res.status(200).json({ parts: responseParts });
     } catch (error) {
         console.error('Vercel API Error:', error);
         return res.status(500).json({ error: 'Terjadi kesalahan pada server AI: ' + error.message });
