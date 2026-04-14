@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karir — The Mafia Barbershop</title>
+  <meta name="description"
+    content="Bergabunglah dengan tim elit The Mafia Barbershop. Kami mencari master barber dan profesional berbakat untuk tumbuh bersama kami.">
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="apple-touch-icon" href="images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: '#0a0a0a', obsidian: '#111111', charcoal: '#1a1a1a',
+            crimson: '#e11d48', blood: '#9f1239', cream: '#f5f5dc',
+            silk: '#ede8d8', gold: '#c9a84c',
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], body: ['Barlow', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Career Specific Styles */
+    .career-hero {
+      background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('images/outlet_mer.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .benefit-card {
+      background: rgba(26, 26, 26, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(225, 29, 72, 0.3);
+      transform: translateY(-5px);
+      background: rgba(26, 26, 26, 0.8);
+    }
+
+    .job-card {
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .job-card:hover {
+      border-left-color: #e11d48;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+
+<body class="bg-noir text-cream overflow-x-hidden">
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+  <div class="bg-aura">
+    <div class="aura aura-1"></div>
+    <div class="aura aura-2"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4"
+    style="background:rgba(10,10,10,0.6);backdrop-filter:blur(10px);">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html#beranda" class="flex items-center gap-3 group">
+        <div
+          class="w-10 h-10 rounded-full bg-crimson flex items-center justify-center overflow-hidden border-2 border-crimson/30 group-hover:border-crimson transition-all">
+          <img src="images/logo.jpg" alt="logo" width="40" height="40">
+        </div>
+        <div>
+          <div class="font-display font-black text-cream text-sm tracking-wider leading-tight">THE MAFIA</div>
+          <div class="text-[0.55rem] tracking-[0.25em] text-crimson uppercase font-body font-600">Barbershop</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html#tentang" class="nav-link">Tentang</a>
+        <a href="index.html#layanan" class="nav-link">Layanan</a>
+        <a href="index.html#reward" class="nav-link">Reward</a>
+        <a href="index.html#informasi" class="nav-link">Informasi</a>
+        <a href="index.html#review" class="nav-link">Review</a>
+        <a href="index.html#galeri" class="nav-link">Galeri</a>
+        <a href="karir.html" class="nav-link active">Karir</a>
+        <a href="index.html#booking" class="nav-link">Booking</a>
+        <a href="index.html#kontak" class="nav-link">Kontak</a>
+        <a href="https://app.themafiabarbershop.com" class="nav-link font-bold text-crimson">Member</a>
+        <a href="index.html#booking" class="btn-primary text-xs">Book Now</a>
+      </div>
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()">
+        <span class="w-6 h-0.5 bg-cream transition-all" id="ham1"></span>
+        <span class="w-6 h-0.5 bg-cream transition-all" id="ham2"></span>
+        <span class="w-4 h-0.5 bg-crimson transition-all" id="ham3"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden border-t border-white/5 mt-4">
+      <div class="flex flex-col gap-1 py-4 px-2">
+        <a href="index.html#tentang" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Tentang Kami</a>
+        <a href="index.html#layanan" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Layanan</a>
+        <a href="index.html#reward" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Reward</a>
+        <a href="index.html#informasi" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Informasi</a>
+        <a href="index.html#review" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Review</a>
+        <a href="index.html#galeri" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Galeri</a>
+        <a href="karir.html" class="nav-link py-3 px-4 border-b border-white/5 active" onclick="closeMenu()">Karir</a>
+        <a href="index.html#booking" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Booking</a>
+        <a href="index.html#kontak" class="nav-link py-3 px-4 border-b border-white/5" onclick="closeMenu()">Kontak</a>
+        <a href="https://app.themafiabarbershop.com" class="nav-link py-3 px-4 text-crimson font-bold" onclick="closeMenu()">Member Area</a>
+        <div class="pt-4 px-4"><a href="index.html#booking" class="btn-primary block text-center" onclick="closeMenu()">Booking Sekarang</a></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="career-hero min-h-[70vh] flex items-center relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 w-full pt-32 pb-20 relative z-10 text-center">
+      <div class="reveal">
+        <div class="section-label mb-6 mx-auto">Join The Family</div>
+        <h1 class="font-display font-black text-5xl md:text-7xl mb-6 text-cream leading-tight">
+          MANIFEST YOUR<br /><span class="text-crimson italic">DESTINY</span>
+        </h1>
+        <p class="text-cream/60 font-body text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+          Jadilah bagian dari tim barbershop paling eksklusif di Surabaya. Temukan tempat di mana bakatmu dihargai dan karirmu tumbuh tanpa batas.
+        </p>
+        <div class="flex justify-center">
+          <a href="#posisi" class="btn-primary">Lihat Posisi Tersedia</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN -->
+  <section class="py-28 px-6 md:px-12 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <div class="section-label mb-4 mx-auto">Mengapa Kami?</div>
+        <h2 class="section-title text-4xl md:text-5xl text-cream mb-4">The Mafia Standard</h2>
+        <div class="ornament-line mb-4 mx-auto"><span class="diamond-dot"></span></div>
+        <p class="text-cream/50 text-sm max-w-md mx-auto">Kami tidak hanya membangun bisnis, kami membangun persaudaraan elit.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="benefit-card p-8 rounded-sm reveal" style="transition-delay: 0s">
+          <div class="w-12 h-12 bg-crimson/10 border border-crimson/30 flex items-center justify-center text-crimson mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 text-cream">Pertumbuhan Cepat</h3>
+          <p class="text-cream/50 text-sm leading-relaxed">Sistem karir yang jelas dan pelatihan intensif untuk meningkatkan skill teknis dan manajerial Anda.</p>
+        </div>
+
+        <div class="benefit-card p-8 rounded-sm reveal" style="transition-delay: 0.1s">
+          <div class="w-12 h-12 bg-crimson/10 border border-crimson/30 flex items-center justify-center text-crimson mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 text-cream">Circle Elit</h3>
+          <p class="text-cream/50 text-sm leading-relaxed">Bekerja di lingkungan profesional dengan klien premium yang menghargai kualitas seni tinggi.</p>
+        </div>
+
+        <div class="benefit-card p-8 rounded-sm reveal" style="transition-delay: 0.2s">
+          <div class="w-12 h-12 bg-crimson/10 border border-crimson/30 flex items-center justify-center text-crimson mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 text-cream">Kesejahteraan</h3>
+          <p class="text-cream/50 text-sm leading-relaxed">Skema komisi yang sangat kompetitif, bonus performa, dan jaminan lingkungan kerja yang sehat.</p>
+        </div>
+
+        <div class="benefit-card p-8 rounded-sm reveal" style="transition-delay: 0.3s">
+          <div class="w-12 h-12 bg-crimson/10 border border-crimson/30 flex items-center justify-center text-crimson mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 text-cream">Solid Brotherhood</h3>
+          <p class="text-cream/50 text-sm leading-relaxed">Budaya kerja yang suportif. Kami bukan hanya rekan kerja, kami adalah keluarga besar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSISI -->
+  <section id="posisi" class="py-28 px-6 md:px-12 bg-charcoal/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-left mb-16 reveal">
+        <div class="section-label mb-4">Lowongan Aktif</div>
+        <h2 class="section-title text-4xl text-cream mb-4">Pilih Peranmu</h2>
+        <div class="red-line mb-6"></div>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Position 1 -->
+        <div class="job-card bg-white/5 p-8 rounded-sm reveal">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display font-bold text-2xl text-cream mb-2">Master Barber</h3>
+              <div class="flex gap-4 text-xs text-crimson uppercase tracking-widest font-bold">
+                <span>Full-time</span>
+                <span>•</span>
+                <span>Lidah Kulon & MERR</span>
+              </div>
+            </div>
+            <a href="https://wa.me/6281232331581?text=Halo%20The%20Mafia%2C%20saya%20ingin%20melamar%20sebagai%20Master%20Barber" class="btn-outline text-xs px-6 py-3">Apply Now</a>
+          </div>
+          <div class="mt-6">
+            <p class="text-cream/50 text-sm mb-4">Kami mencari Master Barber berpengalaman minimal 3 tahun dengan penguasaan berbagai teknik potong modern & klasik.</p>
+            <ul class="text-xs text-cream/40 space-y-2 list-disc pl-4">
+              <li>Berpengalaman minimal 3 tahun di industri Barbershop</li>
+              <li>Memiliki pengetahuan mendalam tentang jenis rambut & produk</li>
+              <li>Komunikatif & berpenampilan menarik</li>
+              <li>Mampu bekerja dalam tim dengan disiplin tinggi</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Position 2 -->
+        <div class="job-card bg-white/5 p-8 rounded-sm reveal">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display font-bold text-2xl text-cream mb-2">Cashier / Customer Service</h3>
+              <div class="flex gap-4 text-xs text-crimson uppercase tracking-widest font-bold">
+                <span>Full-time</span>
+                <span>•</span>
+                <span>MERR</span>
+              </div>
+            </div>
+            <a href="https://wa.me/6281232331581?text=Halo%20The%20Mafia%2C%20saya%20ingin%20melamar%20sebagai%20Cashier" class="btn-outline text-xs px-6 py-3">Apply Now</a>
+          </div>
+          <div class="mt-6">
+            <p class="text-cream/50 text-sm mb-4">Garda terdepan yang melayani pelanggan dengan ramah dan mengelola operasional administrasi outlet.</p>
+            <ul class="text-xs text-cream/40 space-y-2 list-disc pl-4">
+              <li>Wanita/Pria, usia maks 25 tahun</li>
+              <li>Pendidikan minimal SMA/K sederajat</li>
+              <li>Jujur, teliti, dan menguasai penggunaan aplikasi kasir</li>
+              <li>Memiliki kemampuan komunikasi yang sangat baik</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 bg-crimson/5 border border-crimson/20 p-8 rounded-sm text-center reveal">
+        <h3 class="font-display font-bold text-xl text-cream mb-2">Posisi yang Kamu cari belum ada?</h3>
+        <p class="text-cream/50 text-sm mb-6">Kami selalu terbuka untuk talenta-talenta luar biasa. Kirimkan CV & Portofoliomu ke email kami.</p>
+        <a href="mailto:themafiabarbershop.official@gmail.com" class="text-crimson hover:text-white transition-colors underline text-sm">themafiabarbershop.official@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-20 px-6 md:px-12 bg-noir border-t border-white/5">
+    <div class="max-w-7xl mx-auto text-center">
+      <a href="index.html#beranda" class="inline-flex flex-col items-center gap-2 mb-8">
+        <div class="w-12 h-12 rounded-full bg-crimson flex items-center justify-center overflow-hidden">
+          <img src="images/logo.jpg" alt="logo" width="48" height="48">
+        </div>
+        <div>
+          <div class="font-display font-black text-cream text-lg tracking-widest leading-tight">THE MAFIA</div>
+          <div class="text-[0.6rem] tracking-[0.3em] text-crimson uppercase font-body font-600">Barbershop</div>
+        </div>
+      </a>
+      <p class="text-cream/30 text-[10px] tracking-widest uppercase mb-4">© 2026 CV The Mafia Barbershop. All rights reserved.</p>
+      <div class="flex justify-center gap-6">
+        <a href="https://instagram.com/themafiabarbershop.official" target="_blank" class="text-cream/40 hover:text-crimson transition-colors">Instagram</a>
+        <a href="https://www.tiktok.com/@mafiabarbershop.official" target="_blank" class="text-cream/40 hover:text-crimson transition-colors">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
