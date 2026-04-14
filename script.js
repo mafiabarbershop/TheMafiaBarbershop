@@ -317,3 +317,118 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
       btn.style.transform = 'translate(0px, 0px)';
     });
   });
+
+  // ── CUSTOM REVIEWS LOGIC ──
+  const reviewsData = [
+    {
+      name: "Gitta Asmara",
+      time: "3 days ago",
+      rating: 5,
+      content: "Potongannya keren, tempatnya juga cozy banget. Pelayanan ramah dan profesional. Sangat recommended buat yang cari gaya rambut baru!",
+      verified: true
+    },
+    {
+      name: "Andrian Firmansyah",
+      time: "3 days ago",
+      rating: 5,
+      content: "Asli keren banget hasilnya🙌 Stafnya ngerti banget apa yang kita mau. Gak nyesel langganan di sini terus.",
+      verified: true
+    },
+    {
+      name: "Patrick Gregorius Jimant...",
+      time: "3 days ago",
+      rating: 5,
+      content: "Tempatnya bagus dan nyaman... Pelayanannya juga bagus. Barbernya sabar dan teliti banget pas ngerjain rambut.",
+      verified: true
+    },
+    {
+      name: "joko hariyanto",
+      time: "4 days ago",
+      rating: 5,
+      content: "Mantab, rapi, cekatan, cocok lah ini buat langganan. Harga juga sebanding sama kualitas yang didapet.",
+      verified: true
+    },
+    {
+      name: "Rizky Ramadhani",
+      time: "1 week ago",
+      rating: 5,
+      content: "Pilihan terbaik di Surabaya. Suasananya dapet banget, berasa masuk ke basecamp mafia tapi dilayani dengan sangat baik.",
+      verified: true
+    },
+    {
+      name: "Budi Santoso",
+      time: "2 weeks ago",
+      rating: 4,
+      content: "Potongan rapi, barber ramah. Cuma tadi agak antre dikit pas weekend, mending booking dulu lewat aplikasi biar enak.",
+      verified: true
+    }
+  ];
+
+  function renderReviews() {
+    const reviewsDisplay = document.getElementById('reviews-display');
+    if (!reviewsDisplay) return;
+
+    reviewsDisplay.innerHTML = ''; // Clear loading spinner
+
+    reviewsData.forEach((review, index) => {
+      const card = document.createElement('div');
+      card.className = 'review-item-card reveal';
+      card.style.transitionDelay = `${(index % 3) * 0.1}s`;
+
+      const initials = review.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      
+      const starsHTML = Array(5).fill(0).map((_, i) => 
+        `<span class="star">${i < review.rating ? '★' : '☆'}</span>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="review-user-info">
+          <div class="user-avatar" style="background: ${getRandomColor()}">
+            ${initials}
+          </div>
+          <div class="user-details">
+            <div class="user-name-row">
+              <span class="user-name">${review.name}</span>
+              ${review.verified ? `
+                <svg class="verified-badge" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              ` : ''}
+            </div>
+            <div class="review-meta">${review.time}</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          ${starsHTML}
+        </div>
+        <div class="review-content" id="review-content-${index}">
+          ${review.content}
+        </div>
+        ${review.content.length > 100 ? `<button class="read-more-btn" onclick="toggleReadMore(${index})">Read more</button>` : ''}
+      `;
+
+      reviewsDisplay.appendChild(card);
+      // Re-observe the new element for animations
+      if (typeof observer !== 'undefined') observer.observe(card);
+    });
+  }
+
+  function getRandomColor() {
+    const colors = ['#e11d48', '#c9a84c', '#4285F4', '#34A853', '#6200ea', '#d81b60'];
+    return colors[Math.floor(Math.random() * colors.length)] + '40'; // 25% opacity
+  }
+
+  function toggleReadMore(index) {
+    const content = document.getElementById(`review-content-${index}`);
+    const btn = content.nextElementSibling;
+    if (content.classList.toggle('expanded')) {
+      btn.textContent = 'Read less';
+    } else {
+      btn.textContent = 'Read more';
+    }
+  }
+
+  // Initialize reviews on load
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(renderReviews, 800); // Simulate network delay
+  });

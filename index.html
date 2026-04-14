@@ -848,8 +848,39 @@
         <h2 class="section-title text-4xl md:text-5xl text-cream mb-4">Review Pelanggan</h2>
         <div class="ornament-line mb-4"><span class="diamond-dot"></span></div>
       </div>
-      <script src="https://elfsightcdn.com/platform.js" async></script>
-      <div class="elfsight-app-55043b05-aa64-4393-9f53-4640288b7293" data-elfsight-app-lazy></div>
+      <div class="review-container">
+        <!-- Google Reviews Header Card -->
+        <div class="review-header-card reveal">
+          <div class="review-stats">
+            <div class="google-branding">
+              <span class="google-logo-text">
+                <span class="text-[#4285F4]">G</span><span class="text-[#EA4335]">o</span><span class="text-[#FBBC05]">o</span><span class="text-[#4285F4]">g</span><span class="text-[#34A853]">l</span><span class="text-[#EA4335]">e</span>
+              </span>
+              <span class="google-reviews-text">Reviews</span>
+            </div>
+            <div class="rating-summary">
+              <span class="rating-number">4.9</span>
+              <div class="flex flex-col gap-1">
+                <div class="stars-row">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                </div>
+                <span class="reviews-count">(582 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJN86l_j_6aS4R_G_uB-G_X_E" target="_blank" rel="noopener" class="btn-google-review">
+            Review us on Google
+          </a>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div id="reviews-display" class="reviews-grid">
+          <!-- Reviews will be injected by JavaScript -->
+          <div class="flex justify-center items-center py-20 col-span-full">
+            <div class="w-8 h-8 border-2 border-crimson border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
