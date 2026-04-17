@@ -98,11 +98,13 @@ Vision & Style Simulation Capability:
             return res.status(500).json({ error: 'API Key (GEMINI_API_KEY) belum dikonfigurasi di server.' });
         }
 
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY, { apiVersion: 'v1' });
-        const model = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash",
-            systemInstruction: dynamicSystemInstruction
-        });
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel(
+            { model: "gemini-2.5-flash-image", systemInstruction: dynamicSystemInstruction },
+            { apiVersion: "v1" }
+        );
+
+
 
 
 
@@ -110,16 +112,16 @@ Vision & Style Simulation Capability:
 
         const result = await model.generateContent({ contents });
         const response = await result.response;
-        
+
         const responseParts = [];
         if (response.candidates && response.candidates[0].content.parts) {
             for (const part of response.candidates[0].content.parts) {
                 if (part.text) {
                     responseParts.push({ text: part.text });
                 } else if (part.inlineData) {
-                    responseParts.push({ 
-                        image: part.inlineData.data, 
-                        mimeType: part.inlineData.mimeType 
+                    responseParts.push({
+                        image: part.inlineData.data,
+                        mimeType: part.inlineData.mimeType
                     });
                 }
             }
