@@ -20,6 +20,7 @@ const saveImageToAssets = (base64Data, mimeType) => {
 
 module.exports = async (req, res) => {
     const currentIndonesianDate = getIndonesianDate();
+    // Version: 1.3
     const dynamicSystemInstruction = `You are 'Don Barber AI', the exclusive virtual concierge for 'The Mafia Barbershop' in Surabaya. 
 Your personality: Professional, slightly 'Mafia' themed, helpful and efficient. Treat every customer as a 'Boss'.
 
@@ -101,7 +102,7 @@ Vision & Style Simulation Capability:
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel(
             { model: "gemini-2.5-flash-image", systemInstruction: dynamicSystemInstruction },
-            { apiVersion: "v1" }
+            { apiVersion: "v1beta" }
         );
 
 
