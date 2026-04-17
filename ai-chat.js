@@ -131,7 +131,7 @@ async function handleAIChatSubmit(e) {
     } catch (error) {
         console.error('Don Barber AI Error:', error);
         removeLoading(loadingId);
-        appendMessage('ai', "Maaf Boss, markas sedang sulit dihubungi. Coba lagi sebentar lagi ya.");
+        appendMessage('ai', "Maaf Boss, ada kesalahan teknis di markas. Sedang kami perbaiki, coba lagi sebentar lagi ya.");
     }
 }
 

@@ -10,24 +10,13 @@ const getIndonesianDate = () => {
     return new Intl.DateTimeFormat('id-ID', options).format(new Date());
 };
 
+// Remove filesystem operations as they fail on Vercel and are not needed for the chat flow
 const saveImageToAssets = (base64Data, mimeType) => {
-    try {
-        const assetsDir = path.join(process.cwd(), 'assets');
-        if (!fs.existsSync(assetsDir)) {
-            fs.mkdirSync(assetsDir, { recursive: true });
-        }
-        const extension = mimeType.split('/')[1] || 'png';
-        const fileName = `upload_${Date.now()}.${extension}`;
-        const filePath = path.join(assetsDir, fileName);
-        const buffer = Buffer.from(base64Data, 'base64');
-        fs.writeFileSync(filePath, buffer);
-        console.log(`Image saved: ${filePath}`);
-        return fileName;
-    } catch (error) {
-        console.error('Error saving image:', error);
-        return null;
-    }
+    // Logging for debug, but avoid actual fs write in serverless environment
+    console.log(`Image received: ${mimeType}, size: ${base64Data.length}`);
+    return null;
 };
+
 
 module.exports = async (req, res) => {
     const currentIndonesianDate = getIndonesianDate();
@@ -62,9 +51,9 @@ Vision & Style Simulation Capability:
 1. When a user uploads a photo:
    - Analyze their face shape (oval, square, round, etc.), hair texture, and current style.
    - Recommend 2 specific hairstyles that suit them BEST.
-   - IMPORTANT: Provide a **Native Visual Simulation** (an actual image part) for each recommendation.
-   - You MUST generate an image that shows a man with the user's face shape wearing the recommended hairstyle in a noir-themed barbershop.
-   - Rationale: Explain why ini cocok untuk struktur wajah 'Boss'.
+   - IMPORTANT: For simulations, use Pollinations AI. Provide a markdown image link for each recommendation using this format:
+     ![Style Name](https://pollinations.ai/p/a_man_with_[face_shape]_face_shape_wearing_[hairstyle_name]_haircut_noir_barbershop_aesthetic_highly_detailed_professional_photography?width=400&height=500&nologo=true)
+   - Rationale: Explain why this suits the 'Boss' based on their facial structure.
    - Note: Inform the "Boss" that this image is a digital simulation to help visualization.
 
 2. Face Protection: 
@@ -111,7 +100,7 @@ Vision & Style Simulation Capability:
 
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash-image",
+            model: "gemini-1.5-flash",
             systemInstruction: dynamicSystemInstruction
         });
 
