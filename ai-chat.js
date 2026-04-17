@@ -131,7 +131,11 @@ async function handleAIChatSubmit(e) {
     } catch (error) {
         console.error('Don Barber AI Error:', error);
         removeLoading(loadingId);
-        appendMessage('ai', "Maaf Boss, ada kesalahan teknis di markas. Sedang kami perbaiki, coba lagi sebentar lagi ya.");
+        // Tampilkan pesan error yang lebih detail atau fallback ke pesan teknis
+        const displayError = (error.message && (error.message.includes('gangguan teknis') || error.message.includes('kesalahan pada server'))) 
+            ? error.message 
+            : `Boss, ada gangguan teknis: ${error.message || 'Gagal terhubung ke markas'}`;
+        appendMessage('ai', displayError + ". Coba lagi sebentar lagi ya.");
     }
 }
 

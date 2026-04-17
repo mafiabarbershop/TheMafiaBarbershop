@@ -1469,8 +1469,87 @@
     </button>
   </div>
 
+  <!-- AI Chat Widget -->
+  <div id="ai-chat-widget" class="z-[1000]">
+    <!-- Chat Window -->
+    <div id="ai-chat-window"
+      class="fixed bottom-[6.5rem] right-[1.5rem] hidden mb-4 w-80 md:w-96 h-[450px] bg-obsidian/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+      <!-- Header -->
+      <div class="p-4 bg-crimson/10 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full border border-crimson/30 overflow-hidden bg-white">
+            <img src="images/ai-avatar.png" alt="AI Avatar" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="text-cream font-bold text-sm">Don Barber AI</div>
+            <div class="text-[10px] text-green-500 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Online
+            </div>
+          </div>
+        </div>
+        <button onclick="toggleAIChat()" class="text-cream/50 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Messages -->
+      <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div class="flex gap-2">
+          <div
+            class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px]">
+            🤵</div>
+          <div
+            class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">
+            Selamat datang di Markas, Boss! Ada yang bisa saya bantu terkait karir atau layanan kami?
+          </div>
+        </div>
+      </div>
+      <!-- Input -->
+      <div class="p-4 bg-white/5 border-t border-white/10">
+        <form id="ai-chat-form" class="flex gap-2 items-center">
+          <label for="ai-chat-file"
+            class="relative cursor-pointer text-cream/40 hover:text-crimson transition-colors p-1"
+            title="Upload Foto (Analisis Rambut)">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <input type="file" id="ai-chat-file" class="hidden" accept="image/*">
+          </label>
+          <div class="relative flex-1">
+            <div id="ai-chat-preview" class="absolute bottom-full left-0 mb-2 hidden">
+              <div class="relative w-12 h-12 rounded border border-white/20 overflow-hidden">
+                <img id="ai-chat-preview-img" src="" class="w-full h-full object-cover">
+                <button type="button" onclick="cancelImageUpload()"
+                  class="absolute top-0 right-0 bg-black/50 text-white text-[8px] p-0.5">✕</button>
+              </div>
+            </div>
+            <input type="text" id="ai-chat-input" placeholder="Tanya sesuatu atau upload foto..."
+              class="w-full bg-noir/50 border border-white/10 rounded-md px-3 py-2 text-xs text-cream outline-none focus:border-crimson transition-colors">
+          </div>
+          <button type="submit" class="bg-crimson hover:bg-blood px-3 py-2 rounded-md text-white transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Flying Button -->
+    <button id="ai-chat-btn" onclick="toggleAIChat()"
+      class="fixed bottom-[6.5rem] right-[1.5rem] group w-16 h-16 rounded-full bg-crimson shadow-[0_0_30px_rgba(225,29,72,0.4)] flex items-center justify-center border-2 border-white/10 hover:scale-110 transition-all duration-300">
+      <div class="absolute inset-0 rounded-full bg-crimson animate-ping opacity-25 group-hover:hidden"></div>
+      <div class="w-14 h-14 rounded-full overflow-hidden border border-white/20 bg-white">
+        <img src="images/ai-avatar.png" alt="AI Avatar" class="w-full h-full object-cover">
+      </div>
+    </button>
+  </div>
   <script src="script.js"></script>
-  <script src="ai-chat.js"></script>
+  <script src="ai-chat.js?v=1.2"></script>
+
 </body>
 
 </html>

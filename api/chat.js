@@ -1,8 +1,8 @@
+require('dotenv').config();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 
 const getIndonesianDate = () => {
@@ -95,14 +95,17 @@ Vision & Style Simulation Capability:
         }
 
         if (!process.env.GEMINI_API_KEY) {
-            return res.status(500).json({ error: 'API Key belum dikonfigurasi di Vercel.' });
+            return res.status(500).json({ error: 'API Key (GEMINI_API_KEY) belum dikonfigurasi di server.' });
         }
 
-
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY, { apiVersion: 'v1' });
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
             systemInstruction: dynamicSystemInstruction
         });
+
+
+
 
 
         const result = await model.generateContent({ contents });
