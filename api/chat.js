@@ -101,7 +101,7 @@ Vision & Style Simulation Capability:
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel(
-            { model: "gemini-2.5-flash-image", systemInstruction: dynamicSystemInstruction }
+            { model: "gemini-2.5-flash", systemInstruction: dynamicSystemInstruction }
         );
 
 
