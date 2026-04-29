@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — The Mafia Barbershop</title>
+  <meta name="description" content="Koleksi karya dan suasana di The Mafia Barbershop Surabaya.">
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: '#0a0a0a', obsidian: '#111111', charcoal: '#1a1a1a',
+            crimson: '#e11d48', blood: '#9f1239', cream: '#f5f5dc',
+            silk: '#ede8d8', gold: '#c9a84c',
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], body: ['Barlow', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom styles for gallery page */
+    .gallery-page-header {
+      padding-top: 150px;
+      padding-bottom: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+  <div class="bg-aura">
+    <div class="aura aura-1"></div>
+    <div class="aura aura-2"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 scrolled"
+    style="background:rgba(10,10,10,0.8);backdrop-filter:blur(10px); border-bottom: 1px solid rgba(225,29,72,0.2);">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-crimson flex items-center justify-center overflow-hidden border-2 border-crimson/30 group-hover:border-crimson transition-all">
+          <img src="images/logo.jpg" alt="logo" width="40" height="40">
+        </div>
+        <div>
+          <div class="font-display font-black text-cream text-sm tracking-wider leading-tight">THE MAFIA</div>
+          <div class="text-[0.55rem] tracking-[0.25em] text-crimson uppercase font-body font-600">Barbershop</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html#beranda" class="nav-link">Beranda</a>
+        <a href="index.html#galeri" class="nav-link active">Galeri</a>
+        <a href="index.html#booking" class="btn-primary text-xs">Book Now</a>
+      </div>
+      <a href="index.html" class="md:hidden text-cream text-xs font-bold tracking-widest uppercase border border-white/10 px-4 py-2 rounded-sm">Back</a>
+    </div>
+  </nav>
+
+  <!-- GALLERY CONTENT -->
+  <main class="min-h-screen pb-28">
+    <header class="gallery-page-header reveal">
+      <div class="section-label mb-4">Koleksi Visual</div>
+      <h1 class="section-title text-5xl md:text-7xl text-cream mb-6">Our <em class="text-crimson">Masterpieces</em></h1>
+      <div class="center-line mb-8"></div>
+      <p class="text-cream/50 max-w-2xl mx-auto px-6">Setiap potongan adalah seni, setiap detail adalah dedikasi. Jelajahi suasana dan hasil karya terbaik dari The Mafia Barbershop.</p>
+    </header>
+
+    <section class="px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Item 1 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(0)">
+          <img src="images/gallery_1.png" class="w-full h-full object-cover" alt="Premium Haircut 1">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Masterpiece</div>
+            <div class="gallery-overlay-title">Classic Gentleman</div>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(1)">
+          <img src="images/gallery_2.png" class="w-full h-full object-cover" alt="Premium Haircut 2">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Detail</div>
+            <div class="gallery-overlay-title">Precision Fade</div>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(2)">
+          <img src="images/merchandise.webp" class="w-full h-full object-cover" alt="Merchandise">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Shop</div>
+            <div class="gallery-overlay-title">Premium Goods</div>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(3)">
+          <img src="images/waitingroom.webp" class="w-full h-full object-cover" alt="Waiting Room">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Interior</div>
+            <div class="gallery-overlay-title">Comfort Zone</div>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(4)">
+          <img src="images/washbak.webp" class="w-full h-full object-cover" alt="Washbak">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Fasilitas</div>
+            <div class="gallery-overlay-title">Treatment Area</div>
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(5)">
+          <img src="images/cashier.webp" class="w-full h-full object-cover" alt="Cashier">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Interior</div>
+            <div class="gallery-overlay-title">The HQ</div>
+          </div>
+        </div>
+        <!-- Item 7 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(6)">
+          <img src="images/outlet_lidah2.webp" class="w-full h-full object-cover" alt="Lidah Kulon">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Outlet</div>
+            <div class="gallery-overlay-title">Lidah Kulon</div>
+          </div>
+        </div>
+        <!-- Item 8 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(7)">
+          <img src="images/outlet_mer.webp" class="w-full h-full object-cover" alt="MERR">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Outlet</div>
+            <div class="gallery-overlay-title">MERR</div>
+          </div>
+        </div>
+        <!-- Item 9 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(8)">
+          <img src="images/undercut.webp" class="w-full h-full object-cover" alt="Undercut">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Style</div>
+            <div class="gallery-overlay-title">The Undercut</div>
+          </div>
+        </div>
+        <!-- Item 10 -->
+        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(9)">
+          <img src="images/frontyard.webp" class="w-full h-full object-cover" alt="Front Yard">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Exterior</div>
+            <div class="gallery-overlay-title">Front View</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-20 reveal">
+        <a href="index.html" class="btn-outline">Kembali ke Beranda</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX (Same as index.html for consistency) -->
+  <div id="gallery-lightbox" onclick="handleLightboxClick(event)">
+    <button id="lightbox-close" onclick="event.stopPropagation(); closeLightbox();" class="lightbox-close-btn">✕</button>
+    <div id="lightbox-title" class="lightbox-title"></div>
+    <button class="lightbox-nav-btn lightbox-prev" onclick="event.stopPropagation(); lbSlide(-1);">❮</button>
+    <img id="lightbox-img" src="" alt="Gallery image preview" draggable="false">
+    <button class="lightbox-nav-btn lightbox-next" onclick="event.stopPropagation(); lbSlide(1);">❯</button>
+    <div id="lightbox-dots" class="lightbox-dots"></div>
+  </div>
+
+  <footer class="py-12 border-t border-white/5 text-center">
+    <p class="text-cream/30 text-xs tracking-widest uppercase">&copy; 2024 The Mafia Barbershop. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Lightbox data for this page
+    const galleryData = [
+      { src: 'images/gallery_1.png', title: 'Classic Gentleman' },
+      { src: 'images/gallery_2.png', title: 'Precision Fade' },
+      { src: 'images/merchandise.webp', title: 'Premium Goods' },
+      { src: 'images/waitingroom.webp', title: 'Comfort Zone' },
+      { src: 'images/washbak.webp', title: 'Treatment Area' },
+      { src: 'images/cashier.webp', title: 'The HQ' },
+      { src: 'images/outlet_lidah2.webp', title: 'Lidah Kulon' },
+      { src: 'images/outlet_mer.webp', title: 'MERR' },
+      { src: 'images/undercut.webp', title: 'The Undercut' },
+      { src: 'images/frontyard.webp', title: 'Front View' }
+    ];
+
+    let currentLbIndex = 0;
+
+    function openLightbox(index) {
+      currentLbIndex = index;
+      const lb = document.getElementById('gallery-lightbox');
+      const img = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      
+      img.src = galleryData[index].src;
+      title.innerText = galleryData[index].title;
+      lb.classList.add('active');
+      updateDots();
+    }
+
+    function closeLightbox() {
+      document.getElementById('gallery-lightbox').classList.remove('active');
+    }
+
+    function lbSlide(n) {
+      currentLbIndex = (currentLbIndex + n + galleryData.length) % galleryData.length;
+      const img = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      
+      img.classList.add('transitioning');
+      setTimeout(() => {
+        img.src = galleryData[currentLbIndex].src;
+        title.innerText = galleryData[currentLbIndex].title;
+        img.classList.remove('transitioning');
+        updateDots();
+      }, 200);
+    }
+
+    function updateDots() {
+      const dotsContainer = document.getElementById('lightbox-dots');
+      dotsContainer.innerHTML = '';
+      galleryData.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `lb-dot ${i === currentLbIndex ? 'active' : ''}`;
+        dot.onclick = (e) => { e.stopPropagation(); openLightbox(i); };
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function handleLightboxClick(e) {
+      if (e.target.id === 'gallery-lightbox') closeLightbox();
+    }
+
+    // Scroll reveal logic
+    const reveal = () => {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (revealTop < windowHeight - revealPoint) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  </script>
+</body>
+</html>
