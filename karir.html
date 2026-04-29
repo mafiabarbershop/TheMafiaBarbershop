@@ -61,6 +61,41 @@
       border-left-color: #e11d48;
       background: rgba(255, 255, 255, 0.03);
     }
+
+    /* Lenis Smooth Scroll */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(to right, #e11d48, #c9a84c);
+      z-index: 100;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+    }
   </style>
 </head>
 
@@ -71,6 +106,7 @@
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
   </div>
+  <div id="scroll-progress"></div>
 
   <!-- NAVBAR -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4"
@@ -317,107 +353,182 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="py-20 px-6 md:px-12 bg-noir border-t border-white/5">
-    <div class="max-w-7xl mx-auto text-center">
-      <a href="index.html#beranda" class="inline-flex flex-col items-center gap-2 mb-8">
-        <div class="w-12 h-12 rounded-full bg-crimson flex items-center justify-center overflow-hidden">
-          <img src="images/logo.jpg" alt="logo" width="48" height="48">
+  <!-- FOOTER SECTION (Copied from index.html) -->
+  <footer id="kontak" class="bg-obsidian border-t border-white/5 py-16 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+
+        <!-- Kolom 1 & 2: Branding -->
+        <div class="md:col-span-2">
+          <a href="index.html#beranda" class="flex items-center gap-3 mb-6 group">
+            <div class="w-12 h-12 rounded-full bg-crimson flex items-center justify-center overflow-hidden border-2 border-crimson/30 group-hover:border-crimson transition-all">
+              <img src="images/logo.jpg" alt="The Mafia Logo" class="w-full h-full object-cover" width="48" height="48">
+            </div>
+            <div>
+              <div class="font-display font-black text-cream text-lg tracking-wider leading-tight">THE MAFIA</div>
+              <div class="text-[0.6rem] tracking-[0.3em] text-crimson uppercase font-body font-bold">Barbershop</div>
+            </div>
+          </a>
+          <p class="text-cream/40 text-sm leading-relaxed mb-8 max-w-xs">CV. The Mafia Barbershop merupakan perusahaan yang bergerak dibidang jasa (Barbershop) bernama The Mafia Barbershop. The Mafia Barbershop didirikan pada 25 Februari 2025.</p>
+
+          <!-- Social Media Icons -->
+          <div class="flex gap-4">
+            <a href="https://instagram.com/themafiabarbershop.official" target="_blank" rel="noopener"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cream/60 hover:text-white hover:bg-crimson hover:border-crimson transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/6281232331581" target="_blank" rel="noopener"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cream/60 hover:text-white hover:bg-green-600 hover:border-green-600 transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@mafiabarbershop.official" target="_blank" rel="noopener"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cream/60 hover:text-white hover:bg-black hover:border-white/20 transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512">
+                <path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z" />
+              </svg>
+            </a>
+          </div>
         </div>
+
+        <!-- Kolom 3: Lokasi -->
         <div>
-          <div class="font-display font-black text-cream text-lg tracking-widest leading-tight">THE MAFIA</div>
-          <div class="text-[0.6rem] tracking-[0.3em] text-crimson uppercase font-body font-600">Barbershop</div>
+          <div class="font-body font-bold text-cream text-[0.7rem] tracking-[0.25em] uppercase mb-6 border-l-2 border-crimson pl-3">Lokasi</div>
+          <div class="space-y-5">
+            <!-- Outlet 1 -->
+            <div class="block group">
+              <a href="https://maps.app.goo.gl/N7fgaiMdnbdfNPtp9" target="_blank" rel="noopener" class="block">
+                <div class="text-crimson text-xs font-bold mb-1 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Outlet #1 <span class="text-[10px]">↗</span></div>
+                <div class="text-cream/50 text-xs leading-relaxed group-hover:text-cream/80 transition-colors">Jl. Sepat Lidah Kulon No.2, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur</div>
+              </a>
+            </div>
+            <!-- Outlet 2 -->
+            <div class="block group">
+              <a href="https://maps.app.goo.gl/P2QkuyCajXd1iVb28" target="_blank" rel="noopener" class="block">
+                <div class="text-crimson text-xs font-bold mb-1 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Outlet #2 <span class="text-[10px]">↗</span></div>
+                <div class="text-cream/50 text-xs leading-relaxed group-hover:text-cream/80 transition-colors">Ruko Citi 9, Jl. Dr. Ir. H. Soekarno, Gn. Anyar, Kec. Gn. Anyar, Surabaya, Jawa Timur</div>
+              </a>
+            </div>
+          </div>
         </div>
-      </a>
-      <p class="text-cream/30 text-[10px] tracking-widest uppercase mb-4">© 2026 CV The Mafia Barbershop. All rights reserved.</p>
-      <div class="flex justify-center gap-6">
-        <a href="https://instagram.com/themafiabarbershop.official" target="_blank" class="text-cream/40 hover:text-crimson transition-colors">Instagram</a>
-        <a href="https://www.tiktok.com/@mafiabarbershop.official" target="_blank" class="text-cream/40 hover:text-crimson transition-colors">TikTok</a>
+
+        <!-- Kolom 4: Kontak & Jam -->
+        <div>
+          <div class="font-body font-bold text-cream text-[0.7rem] tracking-[0.25em] uppercase mb-6 border-l-2 border-crimson pl-3">Kontak & Jam</div>
+          <div class="space-y-4">
+            <a href="https://wa.me/6281232331581" target="_blank" rel="noopener" class="flex items-center gap-3 group">
+              <div class="w-8 h-8 rounded-sm bg-white/5 flex items-center justify-center text-crimson group-hover:bg-crimson group-hover:text-white transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <span class="text-cream/50 text-xs group-hover:text-cream transition-colors">0812 3233 1581</span>
+            </a>
+            <div class="flex items-start gap-3 mt-2">
+              <div class="w-8 h-8 rounded-sm bg-white/5 flex items-center justify-center text-crimson shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <span class="text-cream/50 text-xs leading-snug"><span class="font-bold text-cream/70 uppercase tracking-tight text-[10px] block">Senin - Kamis</span> 10.00 – 00.00 WIB</span>
+                <span class="text-cream/50 text-xs leading-snug"><span class="font-bold text-cream/70 uppercase tracking-tight text-[10px] block">Jumat - Minggu</span> 09.00 – 00.00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="fancy mb-8 opacity-20" />
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-cream/50 text-[10px] tracking-widest uppercase">© 2026 CV The Mafia Barbershop. All rights reserved.</div>
+        <div class="text-cream/50 text-[10px] tracking-widest uppercase">Elegance in every cut.</div>
       </div>
     </div>
   </footer>
 
-  <!-- AI Chat Widget -->
-  <div id="ai-chat-widget" class="z-[1000]">
-    <!-- Chat Window -->
-    <div id="ai-chat-window"
-      class="fixed bottom-[6.5rem] right-[1.5rem] hidden mb-4 w-80 md:w-96 h-[450px] bg-obsidian/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
-      <!-- Header -->
-      <div class="p-4 bg-crimson/10 border-b border-white/10 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full border border-crimson/30 overflow-hidden bg-white">
-            <img src="images/ai-avatar.png" alt="AI Avatar" class="w-full h-full object-cover">
-          </div>
-          <div>
-            <div class="text-cream font-bold text-sm">Don Barber AI</div>
-            <div class="text-[10px] text-green-500 flex items-center gap-1">
-              <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Online
-            </div>
-          </div>
-        </div>
-        <button onclick="toggleAIChat()" class="text-cream/50 hover:text-white transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <!-- Messages -->
-      <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
-        <div class="flex gap-2">
-          <div
-            class="flex-shrink-0 w-6 h-6 rounded-full bg-crimson/20 border border-crimson/40 flex items-center justify-center text-[10px]">
-            🤵</div>
-          <div
-            class="bg-white/5 border border-white/10 rounded-lg rounded-tl-none p-3 text-cream/80 text-xs leading-relaxed max-w-[85%] shadow-sm">
-            Selamat datang di Markas, Boss! Ada yang bisa saya bantu terkait karir atau layanan kami?
-          </div>
-        </div>
-      </div>
-      <!-- Input -->
-      <div class="p-4 bg-white/5 border-t border-white/10">
-        <form id="ai-chat-form" class="flex gap-2 items-center">
-          <label for="ai-chat-file"
-            class="relative cursor-pointer text-cream/40 hover:text-crimson transition-colors p-1"
-            title="Upload Foto (Analisis Rambut)">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <input type="file" id="ai-chat-file" class="hidden" accept="image/*">
-          </label>
-          <div class="relative flex-1">
-            <div id="ai-chat-preview" class="absolute bottom-full left-0 mb-2 hidden">
-              <div class="relative w-12 h-12 rounded border border-white/20 overflow-hidden">
-                <img id="ai-chat-preview-img" src="" class="w-full h-full object-cover">
-                <button type="button" onclick="cancelImageUpload()"
-                  class="absolute top-0 right-0 bg-black/50 text-white text-[8px] p-0.5">✕</button>
-              </div>
-            </div>
-            <input type="text" id="ai-chat-input" placeholder="Tanya sesuatu atau upload foto..."
-              class="w-full bg-noir/50 border border-white/10 rounded-md px-3 py-2 text-xs text-cream outline-none focus:border-crimson transition-colors">
-          </div>
-          <button type="submit" class="bg-crimson hover:bg-blood px-3 py-2 rounded-md text-white transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
-        </form>
-      </div>
-    </div>
-    <!-- Flying Button -->
-    <button id="ai-chat-btn" onclick="toggleAIChat()"
-      class="fixed bottom-[6.5rem] right-[1.5rem] group w-16 h-16 rounded-full bg-crimson shadow-[0_0_30px_rgba(225,29,72,0.4)] flex items-center justify-center border-2 border-white/10 hover:scale-110 transition-all duration-300">
-      <div class="absolute inset-0 rounded-full bg-crimson animate-ping opacity-25 group-hover:hidden"></div>
-      <div class="w-14 h-14 rounded-full overflow-hidden border border-white/20 bg-white">
-        <img src="images/ai-avatar.png" alt="AI Avatar" class="w-full h-full object-cover">
-      </div>
-    </button>
-  </div>
+  <!-- Floating Actions -->
+  <a href="https://wa.me/6281232331581" target="_blank" rel="noopener" class="fab-wa" aria-label="Chat WhatsApp">
+    <div class="wa-pulse"></div>
+    <svg class="w-6 h-6 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+    </svg>
+  </a>
+
+  <button id="fab-top" class="fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
   <script src="script.js"></script>
   <script src="ai-chat.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const progress = document.getElementById("scroll-progress");
+      if (progress) progress.style.width = scrolled + "%";
+    });
+
+    // Mobile Menu logic
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const ham1 = document.getElementById('ham1');
+      const ham2 = document.getElementById('ham2');
+      const ham3 = document.getElementById('ham3');
+      
+      menu.classList.toggle('active');
+      if (menu.classList.contains('active')) {
+        ham1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+        ham2.style.opacity = '0';
+        ham3.style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        ham3.style.width = '24px';
+      } else {
+        ham1.style.transform = 'none';
+        ham2.style.opacity = '1';
+        ham3.style.transform = 'none';
+        ham3.style.width = '16px';
+      }
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu.classList.contains('active')) toggleMenu();
+    }
+
+    // Scroll reveal logic
+    const reveal = () => {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (revealTop < windowHeight - revealPoint) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  </script>
 </body>
 
 </html>
