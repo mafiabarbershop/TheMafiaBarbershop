@@ -76,87 +76,98 @@
     </header>
 
     <section class="px-6 md:px-12 max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <!-- Item 1 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(0)">
-          <img src="images/gallery_1.png" class="w-full h-full object-cover" alt="Premium Haircut 1">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[220px] grid-flow-dense">
+        
+        <!-- Item 1: Large Vertical (As seen in the screenshot) -->
+        <div class="gallery-item rounded-sm md:col-span-2 md:row-span-2 reveal" onclick="openLightbox(0)">
+          <img src="images/outlet_lidah2.webp" class="w-full h-full object-cover" alt="Outlet Lidah Kulon">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Outlet</div>
+            <div class="gallery-overlay-title">Lidah Kulon HQ</div>
+          </div>
+        </div>
+
+        <!-- Item 2: Small -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-1 reveal" onclick="openLightbox(1)">
+          <img src="images/gallery_1.png" class="w-full h-full object-cover" alt="Premium Haircut">
           <div class="gallery-overlay">
             <div class="gallery-overlay-label">Masterpiece</div>
-            <div class="gallery-overlay-title">Classic Gentleman</div>
+            <div class="gallery-overlay-title">Classic Style</div>
           </div>
         </div>
-        <!-- Item 2 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(1)">
-          <img src="images/gallery_2.png" class="w-full h-full object-cover" alt="Premium Haircut 2">
+
+        <!-- Item 3: Small -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-1 reveal" onclick="openLightbox(2)">
+          <img src="images/gallery_2.png" class="w-full h-full object-cover" alt="Detail">
           <div class="gallery-overlay">
             <div class="gallery-overlay-label">Detail</div>
-            <div class="gallery-overlay-title">Precision Fade</div>
+            <div class="gallery-overlay-title">Precision Cut</div>
           </div>
         </div>
-        <!-- Item 3 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(2)">
-          <img src="images/merchandise.webp" class="w-full h-full object-cover" alt="Merchandise">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Shop</div>
-            <div class="gallery-overlay-title">Premium Goods</div>
-          </div>
-        </div>
-        <!-- Item 4 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(3)">
-          <img src="images/waitingroom.webp" class="w-full h-full object-cover" alt="Waiting Room">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Interior</div>
-            <div class="gallery-overlay-title">Comfort Zone</div>
-          </div>
-        </div>
-        <!-- Item 5 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(4)">
-          <img src="images/washbak.webp" class="w-full h-full object-cover" alt="Washbak">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Fasilitas</div>
-            <div class="gallery-overlay-title">Treatment Area</div>
-          </div>
-        </div>
-        <!-- Item 6 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(5)">
-          <img src="images/cashier.webp" class="w-full h-full object-cover" alt="Cashier">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Interior</div>
-            <div class="gallery-overlay-title">The HQ</div>
-          </div>
-        </div>
-        <!-- Item 7 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(6)">
-          <img src="images/outlet_lidah2.webp" class="w-full h-full object-cover" alt="Lidah Kulon">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Outlet</div>
-            <div class="gallery-overlay-title">Lidah Kulon</div>
-          </div>
-        </div>
-        <!-- Item 8 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(7)">
-          <img src="images/outlet_mer.webp" class="w-full h-full object-cover" alt="MERR">
-          <div class="gallery-overlay">
-            <div class="gallery-overlay-label">Outlet</div>
-            <div class="gallery-overlay-title">MERR</div>
-          </div>
-        </div>
-        <!-- Item 9 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(8)">
+
+        <!-- Item 4: Vertical (Right side) -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-2 reveal" onclick="openLightbox(3)">
           <img src="images/undercut.webp" class="w-full h-full object-cover" alt="Undercut">
           <div class="gallery-overlay">
             <div class="gallery-overlay-label">Style</div>
             <div class="gallery-overlay-title">The Undercut</div>
           </div>
         </div>
-        <!-- Item 10 -->
-        <div class="gallery-item rounded-sm aspect-square reveal" onclick="openLightbox(9)">
+
+        <!-- Item 5: Wide -->
+        <div class="gallery-item rounded-sm md:col-span-2 row-span-1 reveal" onclick="openLightbox(4)">
+          <img src="images/outlet_mer.webp" class="w-full h-full object-cover" alt="Outlet MERR">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Outlet</div>
+            <div class="gallery-overlay-title">Outlet MERR</div>
+          </div>
+        </div>
+
+        <!-- Item 6: Small -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-1 reveal" onclick="openLightbox(5)">
+          <img src="images/waitingroom.webp" class="w-full h-full object-cover" alt="Waiting Room">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Interior</div>
+            <div class="gallery-overlay-title">Waiting Room</div>
+          </div>
+        </div>
+
+        <!-- Item 7: Small -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-1 reveal" onclick="openLightbox(6)">
+          <img src="images/merchandise.webp" class="w-full h-full object-cover" alt="Merchandise">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Shop</div>
+            <div class="gallery-overlay-title">Merchandise</div>
+          </div>
+        </div>
+
+        <!-- Item 8: Vertical -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-2 reveal" onclick="openLightbox(7)">
+          <img src="images/washbak.webp" class="w-full h-full object-cover" alt="Washbak">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Fasilitas</div>
+            <div class="gallery-overlay-title">Treatment Area</div>
+          </div>
+        </div>
+
+        <!-- Item 9: Wide -->
+        <div class="gallery-item rounded-sm md:col-span-2 row-span-1 reveal" onclick="openLightbox(8)">
           <img src="images/frontyard.webp" class="w-full h-full object-cover" alt="Front Yard">
           <div class="gallery-overlay">
             <div class="gallery-overlay-label">Exterior</div>
-            <div class="gallery-overlay-title">Front View</div>
+            <div class="gallery-overlay-title">The Entrance</div>
           </div>
         </div>
+
+        <!-- Item 10: Small -->
+        <div class="gallery-item rounded-sm col-span-1 row-span-1 reveal" onclick="openLightbox(9)">
+          <img src="images/cashier.webp" class="w-full h-full object-cover" alt="Cashier">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-label">Interior</div>
+            <div class="gallery-overlay-title">Reception</div>
+          </div>
+        </div>
+
       </div>
 
       <div class="text-center mt-20 reveal">
@@ -165,7 +176,7 @@
     </section>
   </main>
 
-  <!-- LIGHTBOX (Same as index.html for consistency) -->
+  <!-- LIGHTBOX -->
   <div id="gallery-lightbox" onclick="handleLightboxClick(event)">
     <button id="lightbox-close" onclick="event.stopPropagation(); closeLightbox();" class="lightbox-close-btn">✕</button>
     <div id="lightbox-title" class="lightbox-title"></div>
@@ -181,18 +192,18 @@
 
   <script src="script.js"></script>
   <script>
-    // Lightbox data for this page
+    // Lightbox data matching the order in HTML
     const galleryData = [
-      { src: 'images/gallery_1.png', title: 'Classic Gentleman' },
-      { src: 'images/gallery_2.png', title: 'Precision Fade' },
-      { src: 'images/merchandise.webp', title: 'Premium Goods' },
-      { src: 'images/waitingroom.webp', title: 'Comfort Zone' },
-      { src: 'images/washbak.webp', title: 'Treatment Area' },
-      { src: 'images/cashier.webp', title: 'The HQ' },
-      { src: 'images/outlet_lidah2.webp', title: 'Lidah Kulon' },
-      { src: 'images/outlet_mer.webp', title: 'MERR' },
+      { src: 'images/outlet_lidah2.webp', title: 'Lidah Kulon HQ' },
+      { src: 'images/gallery_1.png', title: 'Classic Style' },
+      { src: 'images/gallery_2.png', title: 'Precision Cut' },
       { src: 'images/undercut.webp', title: 'The Undercut' },
-      { src: 'images/frontyard.webp', title: 'Front View' }
+      { src: 'images/outlet_mer.webp', title: 'Outlet MERR' },
+      { src: 'images/waitingroom.webp', title: 'Waiting Room' },
+      { src: 'images/merchandise.webp', title: 'Merchandise' },
+      { src: 'images/washbak.webp', title: 'Treatment Area' },
+      { src: 'images/frontyard.webp', title: 'The Entrance' },
+      { src: 'images/cashier.webp', title: 'Reception' }
     ];
 
     let currentLbIndex = 0;
