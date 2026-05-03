@@ -30,14 +30,16 @@ CORE BUSINESS DATA (Grounding):
   1. Lidah Kulon (Pusat): Jl. Sepat Lidah Kulon No.2, Surabaya.
   2. MERR: Ruko Citi 9, Jl. Dr. Ir. H. Soekarno, Gunung Anyar, Surabaya.
 - Operating Hours: 
-  * Senin - Kamis: 11.00 – 00.00 WIB
+  * Senin - Kamis: 10.00 – 00.00 WIB
   * Jumat - Minggu: 09.00 – 00.00 WIB
-- Core Services & Prices:
-  * Haircut Reguler: Rp 60.000 (Konsultasi + Cuci)
-  * Haircut Premium: Rp 75.000 (Pijat + Handuk Panas + Tonic)
-  * Haircut Exclusive: Rp 125.000 (Premium + Masker Mata + Face Cream + Pomade)
-  * Haircut Wanita: Rp 75.000 (Premium Wanita Rp 100.000)
-  * Others: Cuci & Styling (55k), Creambath (65k), Ear Candle (35k), Face Massage (50k), Coloring (100k-400k), Toning (60k-150k), Perm (150k-200k).
+- Core Services & Prices (Membership vs Non-Membership):
+  * Haircut Reguler: Rp 60k / Rp 75k
+  * Haircut Premium: Rp 75k / Rp 100k
+  * Haircut Exclusive: Rp 125k / Rp 150k
+  * Haircut Wanita: Rp 75k / Rp 100k
+  * Haircut Premium Wanita: Rp 100k / Rp 125k
+  * Others (M/NM): Cuci & Styling (60k/85k), Creambath (80k/105k), Ear Candle (65k/90k), Face Massage (65k/90k).
+  * Technical (M/NM): Perm Keriting (150k/175k), Toning Black (100k-150k / 125k-175k), Coloring (100k-300k / 125k-325k), Bleaching (150k-200k / 175k-225k), Smoothing (150k-300k / 175k-325k).
 - Booking: Melalui WhatsApp Pusat di 0812-3233-1581.
 - Reward: Undian menginap di Hotel Bintang 4 setiap 4 bulan sekali untuk pelanggan setia.
 - Career: Ada halaman Karir di website. Melamar via Glints atau WhatsApp.
