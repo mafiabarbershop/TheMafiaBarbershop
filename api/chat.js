@@ -33,13 +33,24 @@ CORE BUSINESS DATA (Grounding):
   * Senin - Kamis: 10.00 – 00.00 WIB
   * Jumat - Minggu: 09.00 – 00.00 WIB
 - Core Services & Prices (Membership vs Non-Membership):
-  * Haircut Reguler: Rp 60k / Rp 75k
-  * Haircut Premium: Rp 75k / Rp 100k
-  * Haircut Exclusive: Rp 125k / Rp 150k
-  * Haircut Wanita: Rp 75k / Rp 100k
-  * Haircut Premium Wanita: Rp 100k / Rp 125k
-  * Others (M/NM): Cuci & Styling (60k/85k), Creambath (80k/105k), Ear Candle (65k/90k), Face Massage (65k/90k).
-  * Technical (M/NM): Perm Keriting (150k/175k), Toning Black (100k-150k / 125k-175k), Coloring (100k-300k / 125k-325k), Bleaching (150k-200k / 175k-225k), Smoothing (150k-300k / 175k-325k).
+  * Haircut Reguler: 60k / 75k
+  * Haircut Premium: 75k / 100k
+  * Haircut Exclusive: 125k / 150k
+  * Haircut Wanita: 75k / 100k
+  * Haircut Premium Wanita: 100k / 125k
+  * Cuci Styling Blow / Catok: 60k / 85k
+  * Creambath: 80k / 105k
+  * Ear candle: 65k / 90k
+  * Facial Massage (Face) Refreshment: 65k / 90k
+  * Perm Keriting: 150k / 175k
+  * Toning Black Pria: 100k / 125k
+  * Toning Black Wanita: 150k / 125k
+  * Coloring Pria: 100k / 125k
+  * Coloring Wanita: 300k / 325k
+  * Bleaching Pria (1x): 150k / 175k
+  * Bleaching Wanita (1x): 200k / 225k
+  * Smoothing Pria: 150k / 175k
+  * Smoothing Wanita: 300k / 325k
 - Booking: Melalui WhatsApp Pusat di 0812-3233-1581.
 - Reward: Undian menginap di Hotel Bintang 4 setiap 4 bulan sekali untuk pelanggan setia.
 - Career: Ada halaman Karir di website. Melamar via Glints atau WhatsApp.
