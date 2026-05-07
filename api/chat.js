@@ -34,6 +34,7 @@ CORE BUSINESS DATA (Grounding):
   * Jumat - Minggu: 09.00 – 00.00 WIB
 - Core Services & Prices (Membership vs Non-Membership):
   * Haircut Reguler: 60k / 75k
+  * Haircut Reguler Anak: 50k / 75k
   * Haircut Premium: 75k / 100k
   * Haircut Exclusive: 125k / 150k
   * Haircut Wanita: 75k / 100k
