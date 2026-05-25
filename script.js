@@ -28,13 +28,13 @@ window.addEventListener('scroll', () => {
 // DATA BARBER (untuk dropdown form booking)
 const barbers = [
   // OUTLET #1 - LIDAH KULON
-  { nama: "Shandy", outlet: "Lidah Kulon"},
+  { nama: "Afif", outlet: "Lidah Kulon"},
   { nama: "Fauzan", outlet: "Lidah Kulon"},
-  { nama: "Kevin", outlet: "Lidah Kulon"},
+  { nama: "Wandi", outlet: "Lidah Kulon"},
   // OUTLET #2 - MERR
   { nama: "Lucky", outlet: "MERR"},
-  { nama: "Robin", outlet: "MERR"},
-  { nama: "Dani", outlet: "MERR"}
+  { nama: "Robi", outlet: "MERR"},
+  { nama: "Kevin", outlet: "MERR"}
 ];
 
 function updateBarberSelect() {
