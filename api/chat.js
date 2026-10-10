@@ -29,9 +29,10 @@ CORE BUSINESS DATA (Grounding):
 - Locations: 
   1. Lidah Kulon (Pusat): Jl. Sepat Lidah Kulon No.2, Surabaya.
   2. MERR: Ruko Citi 9, Jl. Dr. Ir. H. Soekarno, Gunung Anyar, Surabaya.
+  3. Premium Hokky Merr: Hokky Merr, Jl. Dr. Ir. H. Soekarno No.208, Klampis Ngasem, Kec. Sukolilo, Surabaya.
 - Operating Hours: 
-  * Senin - Kamis: 10.00 – 00.00 WIB
-  * Jumat - Minggu: 09.00 – 00.00 WIB
+  * Lidah Kulon & MERR: Senin - Kamis: 10.00 – 00.00 WIB | Jumat - Minggu: 09.00 – 00.00 WIB
+  * Premium Hokky Merr: Setiap Hari (Senin - Minggu): 10.00 – 22.00 WIB
 - Core Services & Prices (Membership vs Non-Membership):
   * Haircut Reguler: 60k / 75k
   * Haircut Reguler Anak: 50k / 75k

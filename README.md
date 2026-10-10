@@ -13,6 +13,7 @@ the-mafia-barbershop/
 │   ├── logo.jpg
 │   ├── outlet_lidah2.jpg
 │   ├── outlet_mer.jpg
+│   ├── outlet_hokky.jpg
 │   ├── pompadour.jpg
 │   ├── coloring.jpg
 │   └── beardtrim.jpg
@@ -26,7 +27,7 @@ the-mafia-barbershop/
 - **Premium UI/UX**: Desain dengan tema gelap, animasi smooth, dan efek visual
 - **Booking System**: Form booking online yang terintegrasi dengan WhatsApp
 - **Gallery**: Showcase hasil potongan rambut dan interior barbershop
-- **Multi-outlet**: Informasi untuk 2 lokasi di Surabaya
+- **Multi-outlet**: Informasi untuk 3 lokasi di Surabaya
 
 ## Teknologi
 

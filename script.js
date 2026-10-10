@@ -34,7 +34,9 @@ const barbers = [
   // OUTLET #2 - MERR
   { nama: "Lucky", outlet: "MERR"},
   { nama: "Robi", outlet: "MERR"},
-  { nama: "Kevin", outlet: "MERR"}
+  { nama: "Kevin", outlet: "MERR"},
+  // OUTLET #3 - HOKKY MERR
+  { nama: "Master Barber", outlet: "Hokky MERR"}
 ];
 
 function updateBarberSelect() {
@@ -232,7 +234,8 @@ document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el
     {src:'images/outlet_lidah2.webp',title:'Outlet Lidah Kulon'},
     {src:'images/undercut.webp',title:'Undercut'},
     {src:'images/frontyard.webp',title:'Front Yard'},
-    {src:'images/outlet_mer.webp',title:'Outlet MERR'}
+    {src:'images/outlet_mer.webp',title:'Outlet MERR'},
+    {src:'images/outlet_hokky.webp',title:'Premium Hokky MERR'}
   ];
   let lbIndex = 0;
   
